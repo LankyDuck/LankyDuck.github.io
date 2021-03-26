@@ -1,2 +1,17 @@
-# Personal-Site
-Personal Website of Zac Holmes
+# GitHub for my personal site, used for hosting and code dumps
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+.
+bruh
