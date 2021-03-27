@@ -6,14 +6,6 @@ body {
     background-position: 0px 50px;
     background-size: cover; 
    }
-
-.headerpjog{
-    width: cover;
-    height: 50px;
-    background-color: #c4c4c4;
-    opacity: 0.1;
-}
-
 .cock{
     width: 80%;
     height: fit-content;
@@ -21,8 +13,6 @@ body {
     opacity: 0.1;
 
 }
-
-
 .top-left{
     position: absolute;
     top: 5px;
