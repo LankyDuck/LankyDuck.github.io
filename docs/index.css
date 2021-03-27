@@ -7,10 +7,9 @@ body {
     background-size: cover; 
    }
 
-.header{
-    padding: 0px;
-    text-align: left;
-    background: #1abc9c;
-    color: #C4C4C4;
-    opacity: 0.6;
+headerpjog{
+    max-width: fit-content;
+    height: 50px;
+    background-color: #c4c4c4;
+    opacity: 0.5;
 }
