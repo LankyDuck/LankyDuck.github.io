@@ -15,4 +15,5 @@ body {
        left:0;
        opacity: 0.6;
        fill:#C4C4C4;
+       stroke: black;
    }
