@@ -28,17 +28,17 @@ bruh{
 }
 
 a:link {
-    background-color: yellow;
+    background-color: linear-gradient(#0E15CD, #DA0551);
   }
   
   a:visited {
-    background-color: cyan;
+    background-color: linear-gradient(#0E15CD, #DA0551);
   }
   
   a:hover {
-    background-color: lightgreen;
+    background-color: linear-gradient(#0E15CD, #DA0551);
   }
   
   a:active {
-    background-color: hotpink;
+    background-color: linear-gradient(#0E15CD, #DA0551);
   } 
