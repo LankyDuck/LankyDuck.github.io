@@ -16,12 +16,12 @@ body {
 
 .top-left{
     position: absolute;
-    top: 2px;
+    top: 5px;
     left: 16px;
 }
 .top-right{
     position: absolute;
-    top: 2px;
+    top: 5px;
     left: 89.5%;
 }
 
