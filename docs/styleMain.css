@@ -1,9 +1,8 @@
 body {
     margin:0;
     background-image: url("https://www.lankyduck.com/backgroundEpic.gif");
-    background-repeat: repeat-y;
+    background-repeat: no-repeat;
     background-color: #cccccc;
-    background-position: 0px 50px;
     background-size: cover; 
    }
 .cock{
