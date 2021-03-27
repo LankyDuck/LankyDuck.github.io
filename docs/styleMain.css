@@ -14,8 +14,8 @@ body {
 }
 .top-center{
     position: absolute;
-    top: center;
-    left: 5px;
+    top: 5px;
+    left: 50%;
 }
 .bottom-right{
     position: absolute;
