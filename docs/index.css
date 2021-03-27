@@ -4,4 +4,5 @@ body {
     background-repeat:repeat-y;
     background-color: #cccccc;
     background-position: 0px 50px;
+    background-size: 120% auto;
    }
