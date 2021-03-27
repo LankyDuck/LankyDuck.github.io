@@ -29,16 +29,16 @@ bruh{
 
 a:link {
     background-color: linear-gradient(#0E15CD, #DA0551);
-  }
+}
   
-  a:visited {
+a:visited {
     background-color: linear-gradient(#0E15CD, #DA0551);
-  }
+}
   
-  a:hover {
+a:hover {
     background-color: linear-gradient(#0E15CD, #DA0551);
-  }
+}
   
-  a:active {
+a:active {
     background-color: linear-gradient(#0E15CD, #DA0551);
-  } 
+} 
