@@ -1,5 +1,7 @@
 body {
-    height:200;
+    
     background-image: url("https://www.lankyduck.com/backgroundEpic.gif");
+    background-repeat: no-repeat;
     background-color: #cccccc;
+    background-position: 50px 150px;
    }
