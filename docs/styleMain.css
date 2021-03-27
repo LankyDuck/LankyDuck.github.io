@@ -12,9 +12,9 @@ body {
     opacity: 0.1;
 
 }
-.top-left{
+.top-center{
     position: absolute;
-    top: 5px;
+    top: center;
     left: 5px;
 }
 .bottom-right{
