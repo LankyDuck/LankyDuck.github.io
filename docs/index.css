@@ -1,8 +1,14 @@
 body {
     
     background-image: url("https://www.lankyduck.com/backgroundEpic.gif");
-    background-repeat:repeat-y;
+    background-repeat: repeat-y;
     background-color: #cccccc;
     background-position: 0px 50px;
     background-size: cover;
+   }
+
+   #rectangle{
+       width: 1440px;
+       height: 50px;
+       opacity: 0.6;
    }
