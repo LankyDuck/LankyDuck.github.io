@@ -7,8 +7,8 @@ body {
     background-size: cover; 
    }
 
-headerpjog{
-    max-width: fit-content;
+.headerpjog{
+    width: 1440px;
     height: 50px;
     background-color: #c4c4c4;
     opacity: 0.5;
