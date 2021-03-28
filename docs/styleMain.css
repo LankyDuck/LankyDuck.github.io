@@ -42,4 +42,13 @@ bruh{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-
+bruhBig{
+    font-size: 80px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background: -webkit-linear-gradient(#2b31d1,#7f10ff);
+    background-clip:border-box ;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
