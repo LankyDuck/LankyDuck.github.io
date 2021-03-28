@@ -51,7 +51,7 @@ bruhBig{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-p{
+.mainpage{
     overflow-y: auto;
     margin: 100px;
 }
