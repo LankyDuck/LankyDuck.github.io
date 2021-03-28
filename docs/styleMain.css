@@ -12,10 +12,15 @@ body {
     opacity: 0.1;
 
 }
-.top-center{
+.top-off-center{
     position: absolute;
     top: 5px;
     left: 50%;
+}
+.top-right-sticky{
+    position: sticky;
+    top: 5px;
+    left: 5px;
 }
 .bottom-right{
     position: absolute;
