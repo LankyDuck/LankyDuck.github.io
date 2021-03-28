@@ -54,9 +54,8 @@ bruhBig{
 }
 mainpage{
     overflow-y: auto;
-    margin-left: 10%;
-    margin-right: 10%;
-    background-color: thistle;
-    background-size: 80%;
-    
+    height:fit-content;
+    width: 80%;
+    margin:auto;
+    background-color:tomato;
 }
