@@ -4,13 +4,6 @@ body {
     background-repeat: no-repeat;
     background-size: cover; 
    }
-.cock{
-    width: 80%;
-    height: fit-content;
-    position: center;
-    opacity: 0.1;
-
-}
 .top-off-center{
     position: absolute;
     top: 5px;
@@ -53,7 +46,7 @@ bruhBig{
 }
 p{
     overflow-y: auto;
-    margin: 100px;
+    margin: 250px;
     font-size: 20px;
     font-family: 'Raleway', snas-serif;
     font-weight: 400;
