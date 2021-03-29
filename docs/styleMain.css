@@ -45,9 +45,9 @@ bruhBig{
     -webkit-text-fill-color: transparent;
 }
 p{
-    height: 1440px;
+    height: 600px;
     overflow: auto;
-    margin: 250px;
+    margin: 120px;
     font-size: 20px;
     font-family: 'Raleway', snas-serif;
     font-weight: 400;
