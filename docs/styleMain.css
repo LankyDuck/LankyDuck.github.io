@@ -45,7 +45,7 @@ bruhBig{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-article{
+/*#container2{
     overflow: auto;
     height: 800px;
     margin: 80px;
@@ -54,20 +54,17 @@ article{
     font-weight: 400;
     font-style: normal;
     color:teal;
-}
-#container1 {
-    height: 100%;
-    width: 100%;
-    border: 1px solid green;
-    overflow: hidden;
-    position: relative;
-}
+} */
+#container1::-webkit-scrollbar {
+    display:none;
+} 
 #container2 {
-    position: absolute;
-    top: 0px;
-    bottom: 0px;
-    left: 0px;
-    right: -15px;
-    border: 1px solid blue;
     overflow: auto;
+    height: 800px;
+    margin: 80px;
+    font-size: 20px;
+    font-family: 'Raleway', snas-serif;
+    font-weight: 400;
+    font-style: normal;
+    color:teal;
 }
