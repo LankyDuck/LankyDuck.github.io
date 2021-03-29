@@ -45,18 +45,7 @@ bruhBig{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-/*#container2{
-    overflow: auto;
-    height: 800px;
-    margin: 80px;
-    font-size: 20px;
-    font-family: 'Raleway', snas-serif;
-    font-weight: 400;
-    font-style: normal;
-    color:teal;
-} */
 .container2{
-    width: 1000px;
     height: 800px;
     margin: 80px;
     overflow-y:scroll;
