@@ -44,8 +44,8 @@ bruhBig{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-article::-webkit-scrollbar{
-    display: none;
+article{
+    overflow: auto;
     -ms-overflow-style: none;
     scrollbar-width: none;
     height: 800px;
