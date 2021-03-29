@@ -46,10 +46,22 @@ bruhBig{
 }
 article{
     overflow: auto;
-    -ms-overflow-style: none;
-    scrollbar-width: none;
     height: 800px;
     margin: 80px;
+    font-size: 20px;
+    font-family: 'Raleway', snas-serif;
+    font-weight: 400;
+    font-style: normal;
+    color:teal;
+}
+#container1{
+    height: 800px;
+    margin: 80px;
+    overflow:hidden;
+
+}
+#container2{
+    overflow:auto;
     font-size: 20px;
     font-family: 'Raleway', snas-serif;
     font-weight: 400;
