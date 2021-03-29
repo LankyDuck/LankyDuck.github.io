@@ -26,6 +26,7 @@ body {
     left: 5px;
 }
 .test{
+    position: absolute;
     color:white;
     bottom: 0px;
     text-align: center;
