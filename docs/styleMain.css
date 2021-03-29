@@ -27,6 +27,8 @@ body {
 }
 .test{
     color:white;
+    bottom: 0px;
+    text-align: center;
 }
 bruh{
     font-size: 60px;
