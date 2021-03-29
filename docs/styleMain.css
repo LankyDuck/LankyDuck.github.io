@@ -27,9 +27,8 @@ body {
 }
 .test{
     position: absolute;
-    color:white;
     bottom: 0px;
-    text-align: center;
+    left: 400px;
 }
 bruh{
     font-size: 60px;
