@@ -44,10 +44,12 @@ bruhBig{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
-article{
+article::-webkit-scrollbar{
+    display: none;
+    -ms-overflow-style: none;
+    scrollbar-width: none;
     height: 800px;
-    overflow: auto;
-    margin: 100px;
+    margin: 80px;
     font-size: 20px;
     font-family: 'Raleway', snas-serif;
     font-weight: 400;
