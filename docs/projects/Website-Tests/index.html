@@ -1,92 +1,97 @@
-<div class="w-100 vh-100 relative" id="desktop">
-    <nav class="absolute top-0 left-0 right-0 flex items-center pv2 ph4">
-      <img class="logo mr4" src="https://image.ibb.co/iD2r35/smiley.png ">
-      <a class="white link no-underline f7 mr4 b" href="#">{{activeWindowTitle}}</a>
-      <a class="white link no-underline f7 mr4" href="#">File</a>
-      <a class="white link no-underline f7 mr4" href="#">Edit</a>
-      <a class="white link no-underline f7 mr4" href="#">View</a>
-      <a class="white link no-underline f7 mr4" href="#">Window</a>
-      <a class="white link no-underline f7" href="#">Help</a>
-    </nav>
-    <div class="restrictor absolute right-2 bottom-2 left-2">
-      <transition-group name="fade">
-        <draggable-window :id="window.id" v-if="window.isShowing" v-for="(window, $index) in windows" :key="$index" :content="window.comp" :title="window.title" :index="window.id">
-          {{ window.content }}
-        </draggable-window>
-      </transition-group>
+<html>
+    <head>
+        <link rel="stylesheet" href="style.scss">
+    </head>
+    <div class="w-100 vh-100 relative" id="desktop">
+        <nav class="absolute top-0 left-0 right-0 flex items-center pv2 ph4">
+        <img class="logo mr4" src="https://image.ibb.co/iD2r35/smiley.png ">
+        <a class="white link no-underline f7 mr4 b" href="#">{{activeWindowTitle}}</a>
+        <a class="white link no-underline f7 mr4" href="#">File</a>
+        <a class="white link no-underline f7 mr4" href="#">Edit</a>
+        <a class="white link no-underline f7 mr4" href="#">View</a>
+        <a class="white link no-underline f7 mr4" href="#">Window</a>
+        <a class="white link no-underline f7" href="#">Help</a>
+        </nav>
+        <div class="restrictor absolute right-2 bottom-2 left-2">
+        <transition-group name="fade">
+            <draggable-window :id="window.id" v-if="window.isShowing" v-for="(window, $index) in windows" :key="$index" :content="window.comp" :title="window.title" :index="window.id">
+            {{ window.content }}
+            </draggable-window>
+        </transition-group>
+        </div>
+        <div class="absolute top-0 right-0 bottom-0 h-100 flex flex-column pa4">
+        <div class="flex items-center pv3">
+            <button class="flex-auto bn bg-transparent" @click="openWindow('welcome')">
+            <figure class="mt0 mh0 mb3 w3 h3 db center icon me"></figure>
+            <h4 class="ma0">Welcome</h4>
+            </button>
+        </div>
+        <div class="flex items-center pv3">
+            <button class="flex-auto bn bg-transparent" @click="openWindow('home')">
+            <figure class="mt0 mh0 mb3 w3 h3 db center icon home"></figure>
+            <h4 class="ma0">My Home</h4>
+            </button>
+        </div>
+        <div class="flex items-center pv3">
+            <button class="flex-auto bn bg-transparent" @click="openWindow('writing')">
+            <figure class="mt0 mh0 mb3 w3 h3 db center icon writing"></figure>
+            <h4 class="ma0">Writing</h4>
+            </button>
+        </div>
+        <div class="flex items-center pv3">
+            <button class="flex-auto bn bg-transparent" @click="openWindow('calendar')">
+            <figure class="mt0 mh0 mb3 w3 h3 db center icon calendar"></figure>
+            <h4 class="ma0">Calendar</h4>
+            </button>
+        </div>
+        </div>
     </div>
-    <div class="absolute top-0 right-0 bottom-0 h-100 flex flex-column pa4">
-      <div class="flex items-center pv3">
-        <button class="flex-auto bn bg-transparent" @click="openWindow('welcome')">
-          <figure class="mt0 mh0 mb3 w3 h3 db center icon me"></figure>
-          <h4 class="ma0">Welcome</h4>
-        </button>
-      </div>
-      <div class="flex items-center pv3">
-        <button class="flex-auto bn bg-transparent" @click="openWindow('home')">
-          <figure class="mt0 mh0 mb3 w3 h3 db center icon home"></figure>
-          <h4 class="ma0">My Home</h4>
-        </button>
-      </div>
-      <div class="flex items-center pv3">
-        <button class="flex-auto bn bg-transparent" @click="openWindow('writing')">
-          <figure class="mt0 mh0 mb3 w3 h3 db center icon writing"></figure>
-          <h4 class="ma0">Writing</h4>
-        </button>
-      </div>
-      <div class="flex items-center pv3">
-        <button class="flex-auto bn bg-transparent" @click="openWindow('calendar')">
-          <figure class="mt0 mh0 mb3 w3 h3 db center icon calendar"></figure>
-          <h4 class="ma0">Calendar</h4>
-        </button>
-      </div>
-    </div>
-  </div>
-  
-  <script type="x/template" id="draggable-window">
-      <div :id="id" class="window absolute bg-white ba bw2 b--black">
-      <div class="bb b--black bw2 flex items-center pa1">
-        <button @click="closeWindow" class="bg-transparent bn dim flex items-center">
-                  <!-- Bauhaus FTW -->
-            <i class="material-icons mr1 f5">change_history</i>
-          <i class="material-icons mr1 f5">crop_square</i>
-          <i class="material-icons f6">radio_button_unchecked</i>
-        </button>
-      </div>
-      <div class="pa3">
-          <div :is="content"></div>
-      </div>
-    </div>
-  </script>
-  
-  <script type="text/x-template" id="welcome-template">
-      <div class="measure">
-        <p class="mt0">My name is <a class="dark-pink link no-underline" href="http://mattrothenberg.com" target="_blank">Matt Rothenberg</span></p>
-      <p>I'm a Product Designer at <a class="dark-pink link no-underline" href="http://pivotal.io/platform" target="_blank">Pivotal</a> and the Founder of <a class="dark-pink link no-underline" href="https://runwayapp.io" target="_blank">Runway App</a>, a tool for creating living styleguides
-      <p>I speak French, hack on <a class="dark-pink link no-underline" href="https://github.com/mattrothenberg" target="_blank">open source projects</a>, and send the occasional <a class="dark-pink link no-underline" href="https://twitter.com/mattrothenberg" target="_blank">tweet</a></p>
-  </script>
-  <script type="text/x-template" id="home-template">
-      <div class="measure">
-        <p class="mt0">I live in the wonderful city of New York. And, if you couldn't already tell, I eat way too much🍕</p>
-      <img src="https://image.ibb.co/hHCDY5/anthony_delanoix_8509_compressor.jpg"/>
-    </div>
-  </script>
-  <script type="text/x-template" id="writing-template">
-      <div class="measure">
-        <p class="mt0">Lately, I've been writing a lot of articles and publishing them to <a class="dark-pink link no-under-line" href="https://medium.com/@mattrothenberg" target="_blank">Medium</a></p>
-      <hr class="o-40 mb3">
-      <a href="https://medium.freecodecamp.com/vue-js-introduction-for-people-who-know-just-enough-jquery-to-get-by-eab5aa193d77" target="_blank" class="no-underline dark-pink link fw6 db mb3">A Vue.js introduction for people who know just enough jQuery to get by
-  </a>
-  <a href="https://medium.com/@mattrothenberg/living-styleguides-instantly-with-runway-529c397e8dd5" target="_blank" class="no-underline dark-pink link fw6 db mb3">Living styleguides instantly with Runway</a>
-  <a href="https://uxdesign.cc/treating-full-stack-anxiety-e96f984a02ec" target="_blank" class="no-underline dark-pink link fw6 db mb3">Treating Full Stack Anxiety</a>
-  <a href="https://hackernoon.com/adventures-in-prototyping-a-cli-e95aff625b42" target="_blank" class="no-underline dark-pink link fw6 db mb3">Adventures in prototyping a Command Line Interface</a>
-    </div>
-  </script>
-  <script type="text/x-template" id="calendar-template">
-      <div class="measure-wide">
-        <p class="mt0">Countdown until next <strong>American Presidential Election</strong></p>
-      <hr class="o-40 mb3">
-      <h4 class="mt0 mb2">Dump Trump in:</h4>
-      <div class="f4" id="timeLeft"></div>
-    </div>
-  </script>
+    
+    <script type="x/template" id="draggable-window">
+        <div :id="id" class="window absolute bg-white ba bw2 b--black">
+        <div class="bb b--black bw2 flex items-center pa1">
+            <button @click="closeWindow" class="bg-transparent bn dim flex items-center">
+                    <!-- Bauhaus FTW -->
+                <i class="material-icons mr1 f5">change_history</i>
+            <i class="material-icons mr1 f5">crop_square</i>
+            <i class="material-icons f6">radio_button_unchecked</i>
+            </button>
+        </div>
+        <div class="pa3">
+            <div :is="content"></div>
+        </div>
+        </div>
+    </script>
+    
+    <script type="text/x-template" id="welcome-template">
+        <div class="measure">
+            <p class="mt0">My name is <a class="dark-pink link no-underline" href="http://mattrothenberg.com" target="_blank">Matt Rothenberg</span></p>
+        <p>I'm a Product Designer at <a class="dark-pink link no-underline" href="http://pivotal.io/platform" target="_blank">Pivotal</a> and the Founder of <a class="dark-pink link no-underline" href="https://runwayapp.io" target="_blank">Runway App</a>, a tool for creating living styleguides
+        <p>I speak French, hack on <a class="dark-pink link no-underline" href="https://github.com/mattrothenberg" target="_blank">open source projects</a>, and send the occasional <a class="dark-pink link no-underline" href="https://twitter.com/mattrothenberg" target="_blank">tweet</a></p>
+    </script>
+    <script type="text/x-template" id="home-template">
+        <div class="measure">
+            <p class="mt0">I live in the wonderful city of New York. And, if you couldn't already tell, I eat way too much🍕</p>
+        <img src="https://image.ibb.co/hHCDY5/anthony_delanoix_8509_compressor.jpg"/>
+        </div>
+    </script>
+    <script type="text/x-template" id="writing-template">
+        <div class="measure">
+            <p class="mt0">Lately, I've been writing a lot of articles and publishing them to <a class="dark-pink link no-under-line" href="https://medium.com/@mattrothenberg" target="_blank">Medium</a></p>
+        <hr class="o-40 mb3">
+        <a href="https://medium.freecodecamp.com/vue-js-introduction-for-people-who-know-just-enough-jquery-to-get-by-eab5aa193d77" target="_blank" class="no-underline dark-pink link fw6 db mb3">A Vue.js introduction for people who know just enough jQuery to get by
+    </a>
+    <a href="https://medium.com/@mattrothenberg/living-styleguides-instantly-with-runway-529c397e8dd5" target="_blank" class="no-underline dark-pink link fw6 db mb3">Living styleguides instantly with Runway</a>
+    <a href="https://uxdesign.cc/treating-full-stack-anxiety-e96f984a02ec" target="_blank" class="no-underline dark-pink link fw6 db mb3">Treating Full Stack Anxiety</a>
+    <a href="https://hackernoon.com/adventures-in-prototyping-a-cli-e95aff625b42" target="_blank" class="no-underline dark-pink link fw6 db mb3">Adventures in prototyping a Command Line Interface</a>
+        </div>
+    </script>
+    <script type="text/x-template" id="calendar-template">
+        <div class="measure-wide">
+            <p class="mt0">Countdown until next <strong>American Presidential Election</strong></p>
+        <hr class="o-40 mb3">
+        <h4 class="mt0 mb2">Dump Trump in:</h4>
+        <div class="f4" id="timeLeft"></div>
+        </div>
+    </script>
+</html>
