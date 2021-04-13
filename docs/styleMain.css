@@ -55,6 +55,16 @@ bruhBig{
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
+bruhSmall{
+    font-size: 15px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background: -webkit-linear-gradient(#2b31d1,#7f10ff);
+    background-clip:border-box ;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 .container2{
     height: 800px;
     margin: 80px;
