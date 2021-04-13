@@ -1,80 +1,80 @@
 let eventHub = new Vue({
   data: {
-    cachedWindow: null
-  }
-});
+    cachedWindow: null } });
+
+
 
 let Welcome = {
-  template: '#welcome-template'
-}
+  template: '#welcome-template' };
+
 
 let Home = {
-  template: '#home-template'
-}
+  template: '#home-template' };
+
 
 let Writing = {
-  template: '#writing-template'
-}
+  template: '#writing-template' };
+
 
 let Calendar = {
   template: '#calendar-template',
-  mounted: function() {
+  mounted: function () {
     new Countdown({
       selector: '#timeLeft',
       dateEnd: new Date('Nov 3, 2020 18:00:00'),
-      msgPattern: '{days} days, {hours} hours, {minutes} minutes, {seconds} seconds!'
-    });
-  }
-}
+      msgPattern: '{days} days, {hours} hours, {minutes} minutes, {seconds} seconds!' });
+
+  } };
+
 
 const triggerMouseEvent = (node, eventType) => {
   let clickEvent = document.createEvent('MouseEvents');
   clickEvent.initEvent(eventType, true, true);
   node.dispatchEvent(clickEvent);
-}
+};
 
 const SITE_CONTENT = [{
   content: 'Im the welcome window',
   title: 'Welcome',
   id: 'welcome',
   isShowing: true,
-  comp: Welcome
-}, {
+  comp: Welcome },
+{
   content: 'Im the home window',
   title: 'My Home',
   id: 'home',
   isShowing: false,
-  comp: Home
-}, {
+  comp: Home },
+{
   content: 'Im the writing window',
   title: 'Writing',
   id: 'writing',
   isShowing: false,
-  comp: Writing
-}, {
+  comp: Writing },
+{
   content: 'Im the calendar window',
   title: 'Calendar',
   id: 'calendar',
   isShowing: false,
-  comp: Calendar
-}];
+  comp: Calendar }];
+
 
 Vue.component('draggable-window', {
   template: '#draggable-window',
   props: ['id', 'title', 'content'],
   data: {
-    draggable: null
-  },
+    draggable: null },
+
   methods: {
-    closeWindow: function() {
+    closeWindow: function () {
       eventHub.$emit('close-window', this.$el);
-    }
-  },
-  mounted: function() {
+    } },
+
+  mounted: function () {
     let id = `#${this.$el.id}`;
     let title = this.title;
     let x = 0,
-      y = 0;
+    y = 0;
 
     if (eventHub.cachedWindow && document.getElementById(eventHub.cachedWindow)) {
       let windowEl = document.getElementById(eventHub.cachedWindow);
@@ -84,69 +84,67 @@ Vue.component('draggable-window', {
 
     TweenLite.set(id, {
       x: x,
-      y: y
-    });
+      y: y });
+
 
     this.draggable = Draggable.create(id, {
       type: "x,y",
       edgeResistance: 0.65,
       bounds: ".restrictor",
-      onPress: function() {
+      onPress: function () {
         eventHub.$emit('window-focused', title);
-      }
-    });
+      } });
+
 
     // LOL, "press"
     triggerMouseEvent(this.$el, 'mousedown');
     triggerMouseEvent(this.$el, 'mouseup');
 
     eventHub.cachedWindow = this.$el.id;
-  }
-});
+  } });
+
 
 new Vue({
   el: '#desktop',
   data: {
     windows: SITE_CONTENT,
-    activeWindowTitle: 'mattOS'
-  },
-  created: function() {
+    activeWindowTitle: 'mattOS' },
+
+  created: function () {
     eventHub.$on('close-window', this.closeWindow);
     eventHub.$on('window-focused', this.focusWindow);
   },
   methods: {
-    closeWindow: function(element) {
+    closeWindow: function (element) {
       let match = _.find(this.windows, {
-        id: element.id
-      });
+        id: element.id });
+
       match.isShowing = false;
 
-      let closedWindowCount = _
-        .chain(this.windows)
-        .filter({
-          isShowing: false
-        })
-        .size()
-        .value()
+      let closedWindowCount = _.
+      chain(this.windows).
+      filter({
+        isShowing: false }).
+
+      size().
+      value();
 
       if (closedWindowCount === SITE_CONTENT.length) {
         this.focusWindow('mattOS');
       }
     },
-    focusWindow: function(title) {
+    focusWindow: function (title) {
       this.activeWindowTitle = title;
     },
-    openWindow: function(category) {
+    openWindow: function (category) {
       let match = _.find(this.windows, {
-        id: category
-      });
+        id: category });
+
       if (match.isShowing) {
         let el = document.getElementById(match.id);
-        triggerMouseEvent(el, 'mousedown')
+        triggerMouseEvent(el, 'mousedown');
         triggerMouseEvent(el, 'mouseup');
       } else {
         match.isShowing = true;
       }
-    }
-  }
-});
+    } } });
