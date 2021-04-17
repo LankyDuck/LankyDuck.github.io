@@ -20,6 +20,15 @@
                 greetings: 'My First Web Terminal'
             });
             </script>
+        <script>
+            $('body').terminal({
+                ls: function() {
+                    this.echo('test\ntest\ntest\n');
+                }
+            }, {
+                greetings: 'DuckOS Terminal'
+            });
+        </script>
     </body>
 </html>
 
