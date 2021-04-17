@@ -35,6 +35,11 @@ body {
     bottom: 450px;
     left: 800px;
 }
+.Terminal{
+    position: absolute;
+    bottom: 300px;
+    left:600px;
+}
 bruh{
     font-size: 60px;
     font-family: 'Raleway', sans-serif;
