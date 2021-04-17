@@ -11,24 +11,6 @@
     </head>
     <body>
         <script>
-            $('body').terminal({
-                hello: function(name) {
-                    this.echo('Hello, ' + name +
-                        '. Welcome to the DuckOS Terminal.');
-                },
-                add: function(num1, num2) {
-                    this.echo(parseInt(num1) + parseInt(num2));
-                },
-                bye: function() {
-                    this.echo('So long');
-                },
-                bruh: function(fontSize) {
-                    this.echo('Font Size set to: '+ fontSize);
-                    $('.changeMe').css("font-size", fontSize + "px");
-                }
-                }, {
-                greetings: 'DuckOS [Version 0.0.1]\n(c) Copyright D.U.C.K. Systems, Inc. All Rights Reserved.'
-            });
         </script>
     </body>
 </html>

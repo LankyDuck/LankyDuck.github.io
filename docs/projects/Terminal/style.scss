@@ -1,0 +1,194 @@
+*,
+*:before,
+*:after {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  min-height: 100%;
+}
+
+body {
+  color: #fff;
+  background-color: black;
+}
+
+#terminal {
+  height: 100%;
+}
+
+// Mixins
+
+@mixin text_glitch($name, $intensity, $textColor, $background, $highlightColor1, $highlightColor2, $width, $height) {
+  color: $textColor;
+  position: relative;
+  $steps: $intensity;
+  
+  // Ensure the @keyframes are generated at the root level
+  @at-root {
+    // We need two different ones
+    @for $i from 1 through 2 {
+      @keyframes #{$name}-anim-#{$i} {
+        @for $i from 0 through $steps {
+          #{percentage($i*(1/$steps))} {
+            clip: rect(
+              random($height)+px,
+              $width+px,
+              random($height)+px,
+              0
+            );
+          }
+        }
+      }
+    }
+  }
+
+  &:before,
+  &:after {
+    content: attr(data-text);
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: $background;
+    clip: rect(0, 0, 0, 0); 
+  }
+
+  &:after {
+    left: 2px;
+    text-shadow: -1px 0 $highlightColor1;
+    animation: #{$name}-anim-1 2s infinite linear alternate-reverse;
+  }
+
+  &:before {
+    left: -2px;
+    text-shadow: 2px 0 $highlightColor2; 
+    animation: #{$name}-anim-2 3s infinite linear alternate-reverse;
+  }
+}
+
+// Effects
+
+.effect-interference {
+  animation: interference 2s infinite;
+}
+
+.effect-glitch {
+  @include text_glitch("glitch", 17, white, black, red, blue, 450, 115);
+}
+
+// Animations
+
+@keyframes terminal-blink {
+  
+  0%   {
+    background-color: black;
+    color: black;
+  }
+  
+  
+  50%  {
+    background-color: white;
+    color: #000;
+  }
+  
+  100% {
+    background-color: black;
+    color: black;
+  }
+}
+
+@keyframes interference {
+
+  0%   {
+    text-shadow:
+      0 0 0 rgba(255,255,255,0),
+      0 0 0 rgba(255,255,255,0)
+  }
+
+  20%  {
+    text-shadow:
+      5px 0 0 rgba(255,255,255,0.5),
+      -2px 0 0 rgba(255,255,255,0.2)
+  }
+
+  25%  {
+    text-shadow:
+      -2px 0 0 rgba(255,255,255,0.4),
+      1px 0 0 rgba(255,255,255,0.3)
+  }
+
+  28%  {
+    text-shadow:
+      2px 0 0 rgba(255,255,255,0.7),
+      -2px 0 0 rgba(255,255,255,0.3)
+  }
+
+  35%  {
+    text-shadow:
+      -5px 0 0 rgba(255,255,255,0.2),
+      5px 0 0 rgba(255,255,255,0.5)
+  }
+
+  45%  {
+    text-shadow:
+      4px 0 0 rgba(255,255,255,0.4),
+      -4px 0 0 rgba(255,255,255,0.2)
+  }
+
+  50%  {
+    text-shadow:
+      2px 0 0 rgba(255,255,255,0),
+      -2px 0 0 rgba(255,255,255,.1)
+  }
+
+  60%  {
+    text-shadow:
+      -5px 0 0 rgba(255,255,255,0),
+      4px 0 0 rgba(255,255,255,.3)
+  }
+
+  70%  {
+    text-shadow:
+      2px 0 0 rgba(255,255,255,.4),
+      -2px 0 0 rgba(255,255,255,.2)
+  }
+
+  75%  {
+    text-shadow:
+      5px 0 0 rgba(255,255,255,.7),
+      -5px 0 0 rgba(255,255,255,.4)
+  }
+
+  85%  {
+    text-shadow:
+      -7px 0 0 rgba(255,255,255,.7),
+      7px 0 0 rgba(255,255,255,.3)
+  }
+
+  88%  {
+    text-shadow:
+      -5px 0 0 rgba(255,255,255,.4),
+      5px 0 0 rgba(255,255,255,.2)
+  }
+
+  90%  {
+    text-shadow:
+      -7px 0 0 rgba(255,255,255,.7),
+      7px 0 0 rgba(255,255,255,.3)
+  }
+
+  92%  {
+    text-shadow:
+      -2px 0 0 rgba(255,255,255,.2),
+      2px 0 0 rgba(255,255,255,.4)
+  }
+
+  100% {
+    text-shadow:
+      0 0 0 rgba(255,255,255,0),
+      0 0 0 rgba(255,255,255,0)
+  }
+}
