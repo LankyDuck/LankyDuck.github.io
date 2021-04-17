@@ -12,19 +12,20 @@
     <body>
         <script>
             $('body').terminal({
-                hello: function(what) {
-                    this.echo('Hello, ' + what +
-                              '. Wellcome to this terminal.');
+                hello: function(name) {
+                    this.echo('Hello, ' + name +
+                        '. Welcome to the DuckOS Terminal.');
+                },
+                add: function(num1, num2) {
+                    this.echo(parseInt(num1) + parseInt(num2));
+                },
+                bye: function() {
+                    this.echo('So long');
                 }
-            }, {
-                greetings: 'My First Web Terminal'
+                }, {
+                greetings: 'DuckOS[Version 0.0.1]\n(c) Copyright D.U.C.K. Systems, Inc. All Rights Reserved.'
             });
-            $('body').terminal({
-                ls: function() {
-                    this.echo('test\ntest\ntest\n');
-                }
-            });
-            </script>
+        </script>
     </body>
 </html>
 
