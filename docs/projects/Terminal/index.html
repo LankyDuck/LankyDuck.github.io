@@ -14,9 +14,7 @@
     </head>
     <body>
         <script>
-            var term = $('#terminal').terminal(function(command) {
-            });
-            $('body').terminal({
+            var term = $('body').terminal({
                 iam: function (name) {
                     this.echo('Hello, ' + name +
                         '. Welcome to GeeksForGeeks');
