@@ -14,6 +14,13 @@
     </head>
     <body>
         <script>
+            function sleep(milliseconds) {
+                const date = Date.now();
+                let currentDate = null;
+                do {
+                    currentDate = Date.now();
+                } while (currentDate - date < milliseconds);
+            }
             var directory = "\\projects"
             $(function() {
                 $('body').terminal({
@@ -43,7 +50,8 @@
                     hack: function () {
                         this.echo('<Hacking the system innitiated!>');
                             for (var i=0; i<500; i++){
-                                this.echo('Progress:');      
+                                this.echo('Progress:');  
+                                sleep(1000);    
                             }
                         
                     },
