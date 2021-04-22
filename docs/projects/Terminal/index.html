@@ -14,6 +14,7 @@
     </head>
     <body>
         <script>
+            var epicvar = 1
             var term = $('body').terminal({
                 iam: function (name) {
                     this.echo('Hello, ' + name +
@@ -46,9 +47,11 @@
                 },
                 hack: function () {
                     this.echo('<Hacking the system innitiated!>');
-                        for (var i=0; i<500; i++){
+                        if (epicvar < 100){
                             this.echo('Progress:');
-                            term.update(-1, "####### " + i);     
+                            term.update(-1, "####### " + i);
+                            epicvar++
+                        }     
                         }
                 },
             }, {
