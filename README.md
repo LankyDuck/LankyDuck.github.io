@@ -1,4 +1,4 @@
-# GitHub for my personal site, used for hosting and code dumps
+# Used for hosting my website and code dumps
 .  
 .  
 .  
@@ -14,4 +14,4 @@
 .  
 .  
 .  
-bruh
+yep
