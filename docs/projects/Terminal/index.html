@@ -22,13 +22,17 @@
                 founder: function () {
                     this.echo('Zac Holmes AKA LankyDuck');
                 },
-                ls: function () {
-                    this.echo('>projects\n>contact\n');
+                ls: function (folder) {
+                    if (prompt === "C:\\sys\\web\\user>"){
+                        this.echo('>projects\n>contact\n');
+                    }
+                    if (prompt === "C:\\sys\\web\\user\\projects>"){
+                        this.echo(">Current Projects\n>  Thrust Vector Control Rocket | -TVC\n>  lankyDuck.com               | -website\n>  Flight Training               | -flying")
+                    }
                 },
                 cd: function (folder) {
                     if (folder === "Projects" || folder === "projects"){
                         this.set_prompt("C:\\sys\\web\\user\\projects>");
-                        this.echo(">Current Projects:\n>  Thrust Vector Controlled Rocket\n>  LankyDuck.com\n>  Flight Training");
                     }
                     if (folder === "~"){
                         this.set_prompt("C:\\sys\\web\\user>");
