@@ -30,7 +30,9 @@
                         var directory = "\\projects"
                         this.echo("Current Projects:\n>Thrust Vector Controlled Rocket\n>LankyDuck.com\n>Flight Training")
                     }
-                    this.echo('Usage');
+                    else(){
+                        this.echo('Usage: cd [directory] - ls to list directory');
+                    }
                 },
                 help: function () {
                     this.echo('-iam\n-founder\n-ls\n-help\n');
