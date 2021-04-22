@@ -32,6 +32,9 @@
                             this.set_prompt("C:\\sys\\web\\user\\projects>");
                             this.echo(">Current Projects:\n>  Thrust Vector Controlled Rocket\n>  LankyDuck.com\n>  Flight Training");
                         }
+                        if (folder === "~"){
+                            this.set_prompt("C:\\sys\\web\\user>");
+                        }
                         else {
                             this.echo('Usage: cd [directory] - ls to list directory');
                         }
