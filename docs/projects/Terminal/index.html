@@ -18,7 +18,7 @@
             var term = $('body').terminal({
                 iam: function (name) {
                     this.echo('Hello, ' + name +
-                        '. Welcome to LANKY OS');
+                        '. Welcome to L.A.N.K.Y. OS');
                 },
                 founder: function () {
                     this.echo('Zac Holmes AKA LankyDuck');
@@ -30,12 +30,17 @@
                     if (prompt === "C:\\sys\\web\\user\\projects>"){
                         this.echo(">Current Projects\n>  Thrust Vector Control Rocket | -TVC\n>  lankyDuck.com               | -website\n>  Flight Training               | -flying")
                     }
+                    else{
+                        this.echo('No');
+                    }
                 },
                 cd: function (folder) {
                     if (folder === "Projects" || folder === "projects"){
+                        var prompt = "C:\\sys\\web\\user\\projects>"
                         this.set_prompt("C:\\sys\\web\\user\\projects>");
                     }
                     else if (folder === "~"){
+                        var prompt = "C:\\sys\\web\\user>"
                         this.set_prompt("C:\\sys\\web\\user>");
                     }
                     else {
