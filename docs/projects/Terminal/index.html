@@ -16,7 +16,7 @@
         <script>
             var epicvar = 1
             var directory = "C:\\sys\\web\\user>"
-            var selection
+            var selection = "bruh"
             var term = $('body').terminal({
                 iam: function (name) {
                     this.echo('Hello, ' + name +
@@ -31,7 +31,7 @@
                     }
                     if (directory === "C:\\sys\\web\\user\\projects>"){
                         this.echo(">Current Projects\n>  Thrust Vector Control Rocket | -TVC\n>  lankyDuck.com                | -website\n>  Flight Training              | -flying\n"),
-                        this.read("Select Project: " + selection ) 
+                        selection = this.read("Select Project: " ) 
                         if (selection === "-TVC" || "TVC" || "-tvc" || "tvc"){
                             this.echo(">I havn't gotten to that part yet silly")
                         }
