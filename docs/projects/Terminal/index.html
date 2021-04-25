@@ -29,7 +29,20 @@
                         this.echo('>projects\n>contact\n');
                     }
                     if (directory === "C:\\sys\\web\\user\\projects>"){
-                        this.echo(">Current Projects\n>  Thrust Vector Control Rocket | -TVC\n>  lankyDuck.com                | -website\n>  Flight Training              | -flying\n")
+                        this.echo(">Current Projects\n>  Thrust Vector Control Rocket | -TVC\n>  lankyDuck.com                | -website\n>  Flight Training              | -flying\n"),
+                        this.read("Select Project: " + selection ) 
+                        if (selection === "-TVC" || "TVC" || "-tvc" || "tvc"){
+                            this.echo(">I havn't gotten to that part yet silly")
+                        }
+                        if (selection === "-website" || "-Website" || "website" || "Website"){
+                            this.echo(">I havn't gotten to that part yet silly")
+                        }
+                        if (selection === "-Flying" || "Flying" || "-flying" || "flying"){
+                            this.echo(">I havn't gotten to that part yet silly")
+                        }
+                        else {
+                            this.echo("> Error: Please Select Project \n >Usage: \"Select Project: -[Selection]\"")
+                        }
                     }
                 },
                 cd: function (folder) {
@@ -42,7 +55,7 @@
                         directory = "C:\\sys\\web\\user>"
                     }
                     else {
-                        this.echo('Usage: cd [directory] - ls to list directory')
+                        this.echo('>Usage: cd [directory] - ls to list directory')
 
                     }
                 },
