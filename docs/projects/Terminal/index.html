@@ -28,22 +28,22 @@
                     if (directory === "C:\\sys\\web\\user>"){
                         this.echo('>projects\n>contact\n');
                     }
-                    if (prompt === "C:\\sys\\web\\user\\projects>"){
+                    if (directory === "C:\\sys\\web\\user\\projects>"){
                         this.echo(">Current Projects\n>  Thrust Vector Control Rocket | -TVC\n>  lankyDuck.com               | -website\n>  Flight Training               | -flying")
-                    }
-                    else{
-                        this.echo("no")
                     }
                 },
                 cd: function (folder) {
                     if (folder === "Projects" || folder === "projects"){
                         this.set_prompt("C:\\sys\\web\\user\\projects>")
+                        directory = "C:\\sys\\web\\user\\projects>"
                     }
                     else if (folder === "~"){
                         this.set_prompt("C:\\sys\\web\\user>")
+                        directory = "C:\\sys\\web\\user>"
                     }
                     else {
                         this.echo('Usage: cd [directory] - ls to list directory')
+
                     }
                 },
                 help: function () {
