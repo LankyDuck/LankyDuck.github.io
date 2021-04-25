@@ -15,6 +15,7 @@
     <body>
         <script>
             var epicvar = 1
+            var directory = "C:\\sys\\web\\user>"
             var term = $('body').terminal({
                 iam: function (name) {
                     this.echo('Hello, ' + name +
@@ -24,7 +25,7 @@
                     this.echo('Zac Holmes AKA LankyDuck');
                 },
                 ls: function () {
-                    if (prompt === "C:\\sys\\web\\user>"){
+                    if (directory === "C:\\sys\\web\\user>"){
                         this.echo('>projects\n>contact\n');
                     }
                     if (prompt === "C:\\sys\\web\\user\\projects>"){
