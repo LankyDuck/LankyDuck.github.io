@@ -16,7 +16,6 @@
         <script>
             var epicvar = 1
             var directory = "C:\\sys\\web\\user>"
-            var selection = "bruh"
             var term = $('body').terminal({
                 iam: function (name) {
                     this.echo('Hello, ' + name +
@@ -31,23 +30,7 @@
                     }
                     if (directory === "C:\\sys\\web\\user\\projects>"){
                         this.echo(">Current Projects\n>  Thrust Vector Control Rocket | -TVC\n>  lankyDuck.com                | -website\n>  Flight Training              | -flying\n"),
-                        this.read("Select Project: ", selection => {
-                            if (selection === "-TVC" || selection === "TVC" || selection === "-tvc" || selection === "tvc"){
-                                this.echo(">Thrust Vector Control System:\n> I havn't gotten to that part yet silly")
-                            }
-                            else if (selection === "-website" || selection === "-Website" || selection === "website" || selection === "Website"){
-                                this.echo(">I havn't gotten to that part yet silly")
-                            }
-                            else if (selection === "-Flying" || selection === "Flying" || selection === "-flying" || selection === "flying"){
-                                this.echo(">I havn't gotten to that part yet silly")
-                            }
-                            else if (selection === "" || selection !== "" ){
-                                this.echo(">Error: Please Select Project \n>Usage: \"Select Project: -[Selection]\"")
-                            }
-                        });
-                    }
-                    if(directory === "C:\\sys\\web\\user\\contact>"){
-                        this.echo(">contact.txt")
+                        this.read("Select Project: " + selection ) 
                     }
                 },
                 cd: function (folder) {
@@ -55,40 +38,17 @@
                         this.set_prompt("C:\\sys\\web\\user\\projects>")
                         directory = "C:\\sys\\web\\user\\projects>"
                     }
-                    if (folder === "Contact" || folder === "contact"){
-                        this.set_prompt("C:\\sys\\web\\user\\contact>")
-                        directory = "C:\\sys\\web\\user\\contact>"
-                    }
                     else if (folder === "~"){
                         this.set_prompt("C:\\sys\\web\\user>")
                         directory = "C:\\sys\\web\\user>"
                     }
                     else {
-                        this.echo('>Usage: cd [directory] - ls to list directory')
+                        this.echo('Usage: cd [directory] - ls to list directory')
 
                     }
                 },
-                help: function (command) {
-                    if (command === null){
-                        this.echo(">type help[command] for more information about the command")
-                        this.echo('>-iam     | iam [name]\n>-founder | who\'s the founder?\n>-ls      | list directory\n>-help    | display help\n>-cd      | change directory\n>-nano    | open text editor')
-                    }
-                    if (command === "iam" || command === "-iam"){
-                        this.echo(">iam: Says Hi to the user")
-                    }
-                    if (command === "founder" || command === "-founder"){
-                        this.echo(">founder: Prints who the founder is")
-                    }
-                    if (command === "ls" || command === "-ls"){
-                        this.echo(">ls: lists the current directory")
-                    }
-                    if (command === "cd" || command === "-cd"){
-                        this.echo(">cd: change the directory. Takes an input [directory].")
-                    }
-                    if (command === "nano" || command === "-nano"){
-                        this.echo(">nano: scuffed text viewer. Takes an imput [file.txt].")
-                    }
-
+                help: function () {
+                    this.echo('-iam     | iam [name]\n-founder | Who\'s the founder?\n-ls      | list directory\n-help    | Display help\ncd ')
                 },
             }, {
                 greetings: '__/\\\\\\_______________________/\\\\\\\\\\\\\\\\\\___________/\\\\\\\\\\_____/\\\\\\________/\\\\\\________/\\\\\\________/\\\\\\________/\\\\\\_______________________/\\\\\\\\\\__________/\\\\\\\\\\\\\\\\\\\\\\___________\n__\\/\\\\\\_____________________/\\\\\\\\\\\\\\\\\\\\\\\\\\________\\/\\\\\\\\\\\\___\\/\\\\\\_______\\/\\\\\\_____/\\\\\\//________\\///\\\\\\____/\\\\\\/______________________/\\\\\\///\\\\\\______/\\\\\\/////////\\\\\\________\n___\\/\\\\\\____________________/\\\\\\/////////\\\\\\_______\\/\\\\\\/\\\\\\__\\/\\\\\\_______\\/\\\\\\__/\\\\\\//_____________\\///\\\\\\/\\\\\\/______________________/\\\\\\/__\\///\\\\\\___\\//\\\\\\______\\///________\n____\\/\\\\\\___________________\\/\\\\\\_______\\/\\\\\\_______\\/\\\\\\//\\\\\\_\\/\\\\\\_______\\/\\\\\\\\\\\\//\\\\\\_______________\\///\\\\\\/_______________________/\\\\\\______\\//\\\\\\___\\////\\\\\\______________\n_____\\/\\\\\\___________________\\/\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_______\\/\\\\\\\\//\\\\\\\\/\\\\\\_______\\/\\\\\\//_\\//\\\\\\________________\\/\\\\\\_______________________\\/\\\\\\_______\\/\\\\\\______\\////\\\\\\__________\n______\\/\\\\\\___________________\\/\\\\\\/////////\\\\\\_______\\/\\\\\\_\\//\\\\\\/\\\\\\_______\\/\\\\\\____\\//\\\\\\_______________\\/\\\\\\_______________________\\//\\\\\\______/\\\\\\__________\\////\\\\\\______\n_______\\/\\\\\\___________________\\/\\\\\\_______\\/\\\\\\_______\\/\\\\\\__\\//\\\\\\\\\\\\_______\\/\\\\\\_____\\//\\\\\\______________\\/\\\\\\________________________\\///\\\\\\__/\\\\\\_____/\\\\\\______\\//\\\\\\____\n________\\/\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\__/\\\\\\_\\/\\\\\\_______\\/\\\\\\__/\\\\\\_\\/\\\\\\___\\//\\\\\\\\\\__/\\\\\\_\\/\\\\\\______\\//\\\\\\__/\\\\\\_______\\/\\\\\\________/\\\\\\______________\\///\\\\\\\\\\/_____\\///\\\\\\\\\\\\\\\\\\\\\\/____\n_________\\///////////////__\\///__\\///________\\///__\\///__\\///_____\\/////__\\///__\\///________\\///__\\///________\\///________\\///_________________\\/////_________\\///////////_____\n\nDuckOS - (c) Copyright 2021 L.A.N.K.Y. Systems inc.\n',
