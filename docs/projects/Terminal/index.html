@@ -68,10 +68,8 @@
                     }
                 },
                 help: function (command) {
-                    if (command === null){
-                        this.echo(">type help[command] for more information about the command")
-                        this.echo('>-iam     | iam [name]\n>-founder | who\'s the founder?\n>-ls      | list directory\n>-help    | display help\n>-cd      | change directory\n>-nano    | open text editor')
-                    }
+                    this.echo(">type help[command] for more information about the command")
+                    this.echo('>-iam     | iam [name]\n>-founder | who\'s the founder?\n>-ls      | list directory\n>-help    | display help\n>-cd      | change directory\n>-nano    | open text editor')
                     if (command === "iam" || command === "-iam"){
                         this.echo(">iam: Says Hi to the user")
                     }
