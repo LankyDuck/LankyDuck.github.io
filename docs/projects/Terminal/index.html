@@ -68,7 +68,7 @@
 
                     }
                 },
-                help: function (command) {
+                help: function (...command) {
                     if (command === null){
                         this.echo(">type help[command] for more information about the command")
                         this.echo('>-iam     | iam [name]\n>-founder | who\'s the founder?\n>-ls      | list directory\n>-help    | display help\n>-cd      | change directory\n>-nano    | open text editor')
