@@ -97,8 +97,7 @@
                         const url = "https://www.lankyduck.com/projects/Terminal/contact.txt"
                         fetch(url)
                         .then(response => r.text() ) 
-                        .then(t => content = t)
-                        this.echo(content)
+                        .then(t => this.echo(t))
                     }
                     else {
                         this.echo(" le BRIHJOAIKNGKAJEBG")
