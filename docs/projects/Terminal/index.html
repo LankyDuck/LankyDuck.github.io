@@ -15,6 +15,10 @@
     <body>
         <script>
             var url
+            files = [
+                ["contact.txt", "https://www.lankyduck.com/projects/Terminal/files/contact.txt"],
+                ["otherfile.txt", "https://www.lankyduck.com/projects/Terminal/files/otherfile.txt"]
+            ];
             var directory = "C:\\sys\\web\\user>"
             var selection = "bruh"
             var term = $('body').terminal({
@@ -92,13 +96,13 @@
                     }
                 },
                 nano: function (textfile) {
-                    if (directory === "C:\\sys\\web\\user\\contact>"){
-                        url = "https://www.lankyduck.com/projects/Terminal/contact.txt"
+                    if (textFile === "contact.txt" && directory === "C:\\sys\\web\\user\\contact>"){
+                        url = files[0][1]
                         content = getContent()
                         this.echo(content)
                     }
                     else {
-                        this.echo(" le BRIHJOAIKNGKAJEBG")
+                        this.echo(">Error: Please Select File")
                     }
                 },
             }, {
