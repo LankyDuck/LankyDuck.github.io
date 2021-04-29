@@ -51,7 +51,7 @@
                     }
                 },
                 cd: function (folder) {
-                    if (folder === undefined || folder !== "Projects" || folder !== "projects" || folder !== "Contact" || folder !== "contact" || folder !== "~" ){
+                    if (folder === undefined ){
                         this.echo('>Usage: cd [directory] - ls to list directory - use tilda to return exit folder')
                     }
                     if (folder === "Projects" || folder === "projects"){
@@ -69,6 +69,9 @@
                         this.set_prompt("C:\\sys\\web\\user>")
                         directory = "C:\\sys\\web\\user>"
                     } 
+                    else {
+                        this.echo('>Usage: cd [directory] - ls to list directory - use tilda to return exit folder')
+                    }
                 },
                 help: function (command) {
                     if (command === undefined){
