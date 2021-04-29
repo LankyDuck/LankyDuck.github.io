@@ -108,7 +108,7 @@
             });
             async function getContent() {
                 let response = await fetch(url)
-                let users = await response.json()
+                let users = await response.text()
                 return users
             }
         </script>
