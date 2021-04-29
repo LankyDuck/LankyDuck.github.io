@@ -14,7 +14,7 @@
     </head>
     <body>
         <script>
-            var epicvar = 1
+            var url
             var directory = "C:\\sys\\web\\user>"
             var selection = "bruh"
             var term = $('body').terminal({
@@ -93,11 +93,9 @@
                 },
                 nano: function (textfile) {
                     if (directory === "C:\\sys\\web\\user\\contact>"){
-                        var content
-                        const url = "https://www.lankyduck.com/projects/Terminal/contact.txt"
-                        fetch(url)
-                        .then(response => r.text() ) 
-                        .then(t => {this.echo(t);});
+                        url = "https://www.lankyduck.com/projects/Terminal/contact.txt"
+                        content = getContent()
+                        this.echo(content)
                     }
                     else {
                         this.echo(" le BRIHJOAIKNGKAJEBG")
@@ -108,6 +106,11 @@
                 prompt: "C:\\sys\\web\\user>",
                 checkArity: false
             });
+            async function getContent() {
+                let response = await fetch(url)
+                let users = await response.json()
+                return users
+            }
         </script>
     </body>
 </html>
