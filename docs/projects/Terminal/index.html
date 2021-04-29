@@ -93,7 +93,12 @@
                 },
                 nano: function (textfile) {
                     if (directory === "C:\\sys\\web\\user\\contact>"){
-                        this.echo("kajebngkjq,e=")
+                        var content
+                        const url = "https://www.lankyduck.com/projects/Terminal/contact.txt"
+                        fetch(url)
+                        .then(response => r.text() ) 
+                        .then( t => content)
+                        this.echo(content)
                     }
                     else {
                         this.echo(" le BRIHJOAIKNGKAJEBG")
