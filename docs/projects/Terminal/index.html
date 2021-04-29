@@ -51,8 +51,8 @@
                     }
                 },
                 cd: function (folder) {
-                    if (folder === undefined){
-                        this.echo('>Usage: cd [directory] - ls to list directory')
+                    if (folder === undefined || folder !== "Project", "project" || folder !== "Contact", "contact" || folder !== "~"){
+                        this.echo('>Usage: cd [directory] - ls to list directory - use tilda to return exit folder')
                     }
                     if (folder === "Projects" || folder === "projects"){
                         this.set_prompt("C:\\sys\\web\\user\\projects>")
@@ -63,6 +63,9 @@
                         directory = "C:\\sys\\web\\user\\contact>"
                     }
                     if (folder === "~"){
+                        if (directory === "C:\\sys\\web\\user>"){
+                            this.echo("Access Denied")
+                        }
                         this.set_prompt("C:\\sys\\web\\user>")
                         directory = "C:\\sys\\web\\user>"
                     } 
