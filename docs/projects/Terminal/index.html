@@ -62,14 +62,10 @@
                     if (folder === "~"){
                         if (directory === "C:\\sys\\web\\user>"){
                             this.echo("Access Denied")
-                            break
                         }
                         this.set_prompt("C:\\sys\\web\\user>")
                         directory = "C:\\sys\\web\\user>"
                     } 
-                    if (folder === undefined ){
-                        this.echo('>Usage: cd [directory] - ls to list directory - use tilda to return exit folder')
-                    }
                     else {
                         this.echo('>Usage: cd [directory] - ls to list directory - use tilda to return exit folder')
                     }
