@@ -97,7 +97,7 @@
                 },
                 nano: function (textfile) {
                     if (textFile === "contact.txt" && directory === "C:\\sys\\web\\user\\contact>"){
-                        url = files[0][1]
+                        url = files[textfile][1]
                         content = getContent()
                         this.echo(content)
                     }
@@ -114,6 +114,9 @@
                 let response = await fetch(url)
                 let thegoodstuff = await response.text()
                 return thegoodstuff
+            }
+            function returnURL(){
+                
             }
         </script>
     </body>
