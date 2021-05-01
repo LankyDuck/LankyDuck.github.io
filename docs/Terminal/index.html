@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+ 
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://unpkg.com/jquery.terminal@2.x.x/js/jquery.terminal.min.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/jquery.terminal@2.x.x/css/jquery.terminal.min.css"/>
+        <style>
+            .terminal {
+              --size: 1.4;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            var url
+            files = [
+                ["contact.txt", "https://www.lankyduck.com/projects/Terminal/files/contact.txt"],
+                ["otherfile.txt", "https://www.lankyduck.com/projects/Terminal/files/otherfile.txt"]
+            ];
+            var directory = "C:\\sys\\web\\user>"
+            var selection = "bruh"
+            var term = $('body').terminal({
+                iam: function (name) {
+                    this.echo('Hello, ' + name +
+                        '. Welcome to L.A.N.K.Y. OS');
+                },
+                founder: function () {
+                    this.echo('Zac Holmes AKA LankyDuck');
+                },
+                ls: function () {
+                    if (directory === "C:\\sys\\web\\user>"){
+                        this.echo('>projects\n>contact\n');
+                    }
+                    if (directory === "C:\\sys\\web\\user\\projects>"){
+                        this.echo(">Current Projects\n>  Thrust Vector Control Rocket | -TVC\n>  lankyDuck.com                | -website\n>  Flight Training              | -flying\n"),
+                        this.read("Select Project: ", selection => {
+                            if (selection === "-TVC" || selection === "TVC" || selection === "-tvc" || selection === "tvc"){
+                                this.echo(">Thrust Vector Control System:\n> I havn't gotten to that part yet silly")
+                            }
+                            else if (selection === "-website" || selection === "-Website" || selection === "website" || selection === "Website"){
+                                this.echo(">I havn't gotten to that part yet silly")
+                            }
+                            else if (selection === "-Flying" || selection === "Flying" || selection === "-flying" || selection === "flying"){
+                                this.echo(">I havn't gotten to that part yet silly")
+                            }
+                            else if (selection === "" || selection !== "" ){
+                                this.echo(">Error: Please Select Project \n>Usage: \"Select Project: -[Selection]\"")
+                            }
+                        });
+                    }
+                    if(directory === "C:\\sys\\web\\user\\contact>"){
+                        this.echo(">contact.txt\notherfile.txt")
+                    }
+                },
+                cd: function (folder) {
+                    if (folder === "Projects" || folder === "projects"){
+                        this.set_prompt("C:\\sys\\web\\user\\projects>")
+                        directory = "C:\\sys\\web\\user\\projects>"
+                    }
+                    else if (folder === "Contact" || folder === "contact"){
+                        this.set_prompt("C:\\sys\\web\\user\\contact>")
+                        directory = "C:\\sys\\web\\user\\contact>"
+                    }
+                    else if (folder === "~"){
+                        if (directory === "C:\\sys\\web\\user>"){
+                            this.echo("Access Denied")
+                        }
+                        this.set_prompt("C:\\sys\\web\\user>")
+                        directory = "C:\\sys\\web\\user>"
+                    } 
+                    else {
+                        this.echo('>Usage: cd [directory] - ls to list directory - use tilda to return exit folder')
+                    }
+                },
+                help: function (command) {
+                    if (command === undefined){
+                        this.echo(">type help[command] for more information about the command")
+                        this.echo('>-iam     | iam [name]\n>-founder | who\'s the founder?\n>-ls      | list directory\n>-help    | display help\n>-cd      | change directory\n>-nano    | open text editor')
+                    }
+                    if (command === "iam" || command === "-iam"){
+                        this.echo(">iam: Says Hi to the user")
+                    }
+                    if (command === "founder" || command === "-founder"){
+                        this.echo(">founder: Prints who the founder is")
+                    }
+                    if (command === "ls" || command === "-ls"){
+                        this.echo(">ls: lists the content of the current directory")
+                    }
+                    if (command === "cd" || command === "-cd"){
+                        this.echo(">cd: change the directory. Takes an input [directory].")
+                    }
+                    if (command === "nano" || command === "-nano"){
+                        this.echo(">nano: scuffed text viewer. Takes an imput [file.txt].")
+                    }
+                },
+                nano: function (textfile) {
+                    for (i = 0; i < files.length; i++ ){
+                        if (textfile === files[i][0]){
+                            url = files[i][1]
+                        }
+                    }
+                    content = getContent()
+                    this.echo(content)
+                },
+                test: function (){
+                    leBruh = files[1][0]
+                    this.echo(leBruh)
+                },
+                legacy: function (){
+                    this.echo(">Warning: Legacy website may be broken/unfinished/404/whatever, but just keep that in mind on the legacy site.")
+                    this.echo(">Redirecting in: bruh")
+                    window.location.replace("https://www.lankyduck.com/legacy/");
+                }
+            }, {
+                greetings: '__/\\\\\\_______________________/\\\\\\\\\\\\\\\\\\___________/\\\\\\\\\\_____/\\\\\\________/\\\\\\________/\\\\\\________/\\\\\\________/\\\\\\_______________________/\\\\\\\\\\__________/\\\\\\\\\\\\\\\\\\\\\\___________\n__\\/\\\\\\_____________________/\\\\\\\\\\\\\\\\\\\\\\\\\\________\\/\\\\\\\\\\\\___\\/\\\\\\_______\\/\\\\\\_____/\\\\\\//________\\///\\\\\\____/\\\\\\/______________________/\\\\\\///\\\\\\______/\\\\\\/////////\\\\\\________\n___\\/\\\\\\____________________/\\\\\\/////////\\\\\\_______\\/\\\\\\/\\\\\\__\\/\\\\\\_______\\/\\\\\\__/\\\\\\//_____________\\///\\\\\\/\\\\\\/______________________/\\\\\\/__\\///\\\\\\___\\//\\\\\\______\\///________\n____\\/\\\\\\___________________\\/\\\\\\_______\\/\\\\\\_______\\/\\\\\\//\\\\\\_\\/\\\\\\_______\\/\\\\\\\\\\\\//\\\\\\_______________\\///\\\\\\/_______________________/\\\\\\______\\//\\\\\\___\\////\\\\\\______________\n_____\\/\\\\\\___________________\\/\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\_______\\/\\\\\\\\//\\\\\\\\/\\\\\\_______\\/\\\\\\//_\\//\\\\\\________________\\/\\\\\\_______________________\\/\\\\\\_______\\/\\\\\\______\\////\\\\\\__________\n______\\/\\\\\\___________________\\/\\\\\\/////////\\\\\\_______\\/\\\\\\_\\//\\\\\\/\\\\\\_______\\/\\\\\\____\\//\\\\\\_______________\\/\\\\\\_______________________\\//\\\\\\______/\\\\\\__________\\////\\\\\\______\n_______\\/\\\\\\___________________\\/\\\\\\_______\\/\\\\\\_______\\/\\\\\\__\\//\\\\\\\\\\\\_______\\/\\\\\\_____\\//\\\\\\______________\\/\\\\\\________________________\\///\\\\\\__/\\\\\\_____/\\\\\\______\\//\\\\\\____\n________\\/\\\\\\\\\\\\\\\\\\\\\\\\\\\\\\__/\\\\\\_\\/\\\\\\_______\\/\\\\\\__/\\\\\\_\\/\\\\\\___\\//\\\\\\\\\\__/\\\\\\_\\/\\\\\\______\\//\\\\\\__/\\\\\\_______\\/\\\\\\________/\\\\\\______________\\///\\\\\\\\\\/_____\\///\\\\\\\\\\\\\\\\\\\\\\/____\n_________\\///////////////__\\///__\\///________\\///__\\///__\\///_____\\/////__\\///__\\///________\\///__\\///________\\///________\\///_________________\\/////_________\\///////////_____\n\nDuckOS - (c) Copyright 2021 L.A.N.K.Y. Systems inc.\nType \'help\' to get started\n',
+                prompt: "C:\\sys\\web\\user>",
+                checkArity: false
+            });
+            async function getContent() {
+                let response = await fetch(url)
+                let thegoodstuff = await response.text()
+                return thegoodstuff
+            }
+        </script>
+    </body>
+</html>
