@@ -92,21 +92,26 @@
                         this.echo(">cd: change the directory. Takes an input [directory].")
                     }
                     if (command === "nano" || command === "-nano"){
-                        this.echo(">nano: scuffed text viewer. Takes an imput [file.txt].")
+                        this.echo(">nano: scuffed text viewer. Takes an input [file.txt].")
                     }
                 },
                 nano: function (textfile) {
-                    for (i = 0; i < files.length; i++ ){
+                    if (textfile === undefined){
+                        for (i = 0; i < files.length; i++ ){
                         if (textfile === files[i][0]){
                             url = files[i][1]
                         }
                         else{
                             url = "https://www.lankyduck.com/files/error.txt"
                         }
+                        }
+                        this.echo("url: " + url)
+                        content = getContent()
+                        this.echo(content)
+                        }
+                    else{
+                        this.echo(">Usage: nano [file.txt]. Type command \"help nano\"")
                     }
-                    this.echo("url: " + url)
-                    content = getContent()
-                    this.echo(content)
                 },
                 test: function (){
                     leBruh = files[1][0]
@@ -114,7 +119,17 @@
                 },
                 legacy: function (){
                     this.echo(">Warning: Legacy website may be broken/unfinished/404/whatever, but just keep that in mind on the legacy site.")
-                    this.echo(">Redirecting in: bruh")
+                    this.echo(">Redirecting in: ")
+                    this.echo(">5")
+                    setTimeout(() => { console.log(""); }, 1000);
+                    this.echo(">4")
+                    setTimeout(() => { console.log(""); }, 1000);
+                    this.echo(">3")
+                    setTimeout(() => { console.log(""); }, 1000);
+                    this.echo(">2")
+                    setTimeout(() => { console.log(""); }, 1000);
+                    this.echo(">1")
+                    setTimeout(() => { console.log(""); }, 1000);
                     window.location.replace("https://www.lankyduck.com/legacy/");
                 }
             }, {
