@@ -1,6 +1,3 @@
-contact.txt
-url: "https://www.lankyduck.com/projects/Terminal/contact.txt"
-
 Zac Holmes
 zac@lankyduck.com
 LankyDuck#5422 on Discord(preferred communication)
