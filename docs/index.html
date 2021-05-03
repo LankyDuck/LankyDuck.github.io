@@ -100,9 +100,13 @@
                         if (textfile === files[i][0]){
                             url = files[i][1]
                         }
+                        else{
+                            url = "https://www.lankyduck.com/files/error.txt"
+                        }
                     }
                     content = getContent()
                     this.echo(content)
+                    this.echo("url: " + url)
                 },
                 test: function (){
                     leBruh = files[1][0]
