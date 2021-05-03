@@ -1,4 +1,3 @@
-otherfile.txt
 test Test test Test test Test test Test test Test 
 test Test test Test test Test test Test test Test 
 test Test test Test test Test test Test test Test 
