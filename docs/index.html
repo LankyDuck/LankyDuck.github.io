@@ -77,7 +77,7 @@
                 help: function (command) {
                     if (command === undefined){
                         this.echo(">type help[command] for more information about the command")
-                        this.echo('>-iam     | iam [name]\n>-founder | who\'s the founder?\n>-ls      | list directory\n>-help    | display help\n>-cd      | change directory\n>-nano    | open text editor')
+                        this.echo('>-iam     | iam [name]\n>-founder | who\'s the founder?\n>-ls      | list directory\n>-help    | display help\n>-cd      | change directory\n>-nano    | open text editor\n>-legacy  | redirect to legacy site')
                     }
                     if (command === "iam" || command === "-iam"){
                         this.echo(">iam: Says Hi to the user")
@@ -93,6 +93,9 @@
                     }
                     if (command === "nano" || command === "-nano"){
                         this.echo(">nano: scuffed text viewer. Takes an input [file.txt].")
+                    }
+                    if (command === "legacy" || "-legacy"){
+                        this.echo(">legacy: Redirect to legacy website, shit is brokey and I don't care to fix it")
                     }
                 },
                 nano: function (textfile) {
@@ -112,10 +115,6 @@
                     else{
                         this.echo(">Usage: nano [file.txt]. Type command \"help nano\"")
                     }
-                },
-                test: function (){
-                    leBruh = files[1][0]
-                    this.echo(leBruh)
                 },
                 legacy: function (){
                     this.echo(">Warning: Legacy website may be broken/unfinished/404/whatever, but just keep that in mind on the legacy site.")
