@@ -79,39 +79,39 @@
                         this.echo(">type help[command] for more information about the command")
                         this.echo('>-iam     | iam [name]\n>-founder | who\'s the founder?\n>-ls      | list directory\n>-help    | display help\n>-cd      | change directory\n>-nano    | open text editor\n>-legacy  | redirect to legacy site')
                     }
-                    if (command === "iam" || command === "-iam"){
+                    else if (command === "iam" || command === "-iam"){
                         this.echo(">iam: Says Hi to the user")
                     }
-                    if (command === "founder" || command === "-founder"){
+                    else if (command === "founder" || command === "-founder"){
                         this.echo(">founder: Prints who the founder is")
                     }
-                    if (command === "ls" || command === "-ls"){
+                    else if (command === "ls" || command === "-ls"){
                         this.echo(">ls: lists the content of the current directory")
                     }
-                    if (command === "cd" || command === "-cd"){
+                    else if (command === "cd" || command === "-cd"){
                         this.echo(">cd: change the directory. Takes an input [directory].")
                     }
-                    if (command === "nano" || command === "-nano"){
+                    else if (command === "nano" || command === "-nano"){
                         this.echo(">nano: scuffed text viewer. Takes an input [file.txt].")
                     }
-                    if (command === "legacy" || "-legacy"){
+                    else if (command === "legacy" || "-legacy"){
                         this.echo(">legacy: Redirect to legacy website, shit is brokey and I don't care to fix it")
                     }
                 },
                 nano: function (textfile) {
                     if (textfile === undefined){
                         for (i = 0; i < files.length; i++ ){
-                        if (textfile === files[i][0]){
-                            url = files[i][1]
-                        }
-                        else{
-                            url = "https://www.lankyduck.com/files/error.txt"
-                        }
+                            if (textfile === files[i][0]){
+                                url = files[i][1]
+                            }
+                            else{
+                                url = "https://www.lankyduck.com/files/error.txt"
+                            }
                         }
                         this.echo("url: " + url)
                         content = getContent()
                         this.echo(content)
-                        }
+                    }
                     else{
                         this.echo(">Usage: nano [file.txt]. Type command \"help nano\"")
                     }
