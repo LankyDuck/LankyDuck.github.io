@@ -99,7 +99,7 @@
                     }
                 },
                 nano: function (textfile) {
-                    if (textfile === undefined){
+                    if (!(textfile === undefined)){
                         for (i = 0; i < files.length; i++ ){
                             if (textfile === files[i][0]){
                                 url = files[i][1]
