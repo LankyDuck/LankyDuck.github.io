@@ -29,7 +29,7 @@
                         '. Welcome to L.A.N.K.Y. OS');
                 },
                 founder: function () {
-                    this.echo('Zac Holmes AKA LankyDuck');
+                    this.echo('Zac Holmes - "LankyDuck"');
                 },
                 ls: function () {
                     if (directory === "C:\\sys\\web\\user>"){
@@ -79,25 +79,25 @@
                 help: function (command) {
                     if (command === undefined){
                         this.echo(">type help[command] for more information about the command")
-                        this.echo('>-iam     | iam [name]\n>-founder | who\'s the founder?\n>-ls      | list directory\n>-help    | display help\n>-cd      | change directory\n>-nano    | open text editor\n>-legacy  | redirect to legacy site')
+                        this.echo('-iam     | iam [your name]\n-founder | who\'s the founder?\n-ls      | list directory\n-help    | display help\n-cd      | change directory\n-nano    | open text editor\n-legacy  | redirect to legacy site')
                     }
                     else if (command === "iam" || command === "-iam"){
-                        this.echo(">iam: Says Hi to the user")
+                        this.echo("-iam: Says Hi to the user")
                     }
                     else if (command === "founder" || command === "-founder"){
-                        this.echo(">founder: Prints who the founder is")
+                        this.echo("-founder: Prints who the founder is")
                     }
                     else if (command === "ls" || command === "-ls"){
-                        this.echo(">ls: lists the content of the current directory")
+                        this.echo("-ls: lists the content of the current directory")
                     }
                     else if (command === "cd" || command === "-cd"){
-                        this.echo(">cd: change the directory. Takes an input [directory].")
+                        this.echo("-cd: change the directory. Takes an input [directory].")
                     }
                     else if (command === "nano" || command === "-nano"){
-                        this.echo(">nano: scuffed text viewer. Takes an input [file.txt].")
+                        this.echo("-nano: scuffed text viewer. Takes an input [file.txt].")
                     }
                     else if (command === "legacy" || "-legacy"){
-                        this.echo(">legacy: Redirect to legacy website, shit is brokey and I don't care to fix it")
+                        this.echo("-legacy: Redirect to legacy website, shit is brokey and I don't care to fix it")
                     }
                 },
                 nano: function (textfile) {
