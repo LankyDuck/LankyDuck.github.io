@@ -36,7 +36,7 @@
                         this.echo('>projects\n>contact\n');
                     }
                     if (directory === "C:\\sys\\web\\user\\projects>"){
-                        this.echo(">Current Projects\n>  Thrust Vector Control Rocket | -TVC\n>  lankyDuck.com                | -website\n>  Flight Training              | -flying\n"),
+                        this.echo("Current Projects\n>  Thrust Vector Control Rocket | -TVC\n>  lankyDuck.com                | -website\n>  Flight Training              | -flying\n"),
                         this.read("Select Project: ", selection => {
                             if (selection === "-TVC" || selection === "TVC" || selection === "-tvc" || selection === "tvc"){
                                 this.echo("[Content Missing]")
@@ -53,7 +53,7 @@
                         });
                     }
                     if(directory === "C:\\sys\\web\\user\\contact>"){
-                        this.echo(">contact.txt\notherfile.txt")
+                        this.echo("contact.txt\notherfile.txt")
                     }
                 },
                 cd: function (folder) {
@@ -73,12 +73,12 @@
                         directory = "C:\\sys\\web\\user>"
                     } 
                     else {
-                        this.echo('>Usage: cd [directory] - ls to list directory - use tilda to return exit folder')
+                        this.echo('>Usage: cd [directory] - ls to list directory - use Tilda to exit current folder')
                     }
                 },
                 help: function (command) {
                     if (command === undefined){
-                        this.echo(">type help[command] for more information about the command")
+                        this.echo("type help[command] for more information about the command")
                         this.echo('-iam     | iam [your name]\n-founder | who\'s the founder?\n-ls      | list directory\n-help    | display help\n-cd      | change directory\n-nano    | open text editor\n-legacy  | redirect to legacy site')
                     }
                     else if (command === "iam" || command === "-iam"){
@@ -91,7 +91,7 @@
                         this.echo("-ls: lists the content of the current directory")
                     }
                     else if (command === "cd" || command === "-cd"){
-                        this.echo("-cd: change the directory. Takes an input [directory].")
+                        this.echo("-cd: change the directory. Takes an input [directory]. Use Tilda [~] to move to exit current folder")
                     }
                     else if (command === "nano" || command === "-nano"){
                         this.echo("-nano: scuffed text viewer. Takes an input [file.txt].")
