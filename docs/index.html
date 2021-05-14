@@ -33,7 +33,7 @@
                 },
                 ls: function () {
                     if (directory === "C:\\sys\\web\\user>"){
-                        this.echo('>projects\n>contact\n');
+                        this.echo('>projects\n>contact');
                     }
                     if (directory === "C:\\sys\\web\\user\\projects>"){
                         this.echo("Current Projects\n>  Thrust Vector Control Rocket | -TVC\n>  lankyDuck.com                | -website\n>  Flight Training              | -flying\n"),
@@ -98,6 +98,12 @@
                     }
                     else if (command === "legacy" || "-legacy"){
                         this.echo("-legacy: Redirect to legacy website, shit is brokey and I don't care to fix it")
+                    }
+                    else if (command === "help" || "-help"){
+                        this.echo("[Error] you just hacked the system")
+                        while(true){
+                            this.echo("︵‿︵‿")
+                        }
                     }
                 },
                 nano: function (textfile) {
