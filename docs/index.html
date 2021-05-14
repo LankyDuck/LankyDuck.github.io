@@ -96,14 +96,14 @@
                     else if (command === "nano" || command === "-nano"){
                         this.echo("-nano: scuffed text viewer. Takes an input [file.txt].")
                     }
-                    else if (command === "legacy" || "-legacy"){
+                    else if (command === "legacy" || command === "-legacy"){
                         this.echo("-legacy: Redirect to legacy website, shit is brokey and I don't care to fix it")
                     }
-                    else if (command === "help" || "-help"){
+                    else if (command === "help" || command === "-help"){
                         this.echo("[Error] you just hacked the system")
-                        // while(true){
-                        //     this.echo("︵‿︵‿")
-                        // }
+                        while(true){
+                             this.echo("︵‿︵‿")
+                        }
                     }
                 },
                 nano: function (textfile) {
