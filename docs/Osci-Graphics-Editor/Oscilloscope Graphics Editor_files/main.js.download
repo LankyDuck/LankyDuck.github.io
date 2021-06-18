@@ -1,0 +1,516 @@
+(function () {
+  "use strict";
+  var _canvas, _ctx;
+
+  var _objCur = [];           // An object is an array of points
+  var _objects = [_objCur];   // Array of objects
+  var _lineHover = null;      // An array of two points
+  var _lineHoverStyle = "#FFFFFF";
+
+  // Constants
+  var MaxDist = 5;
+  var OvrSmp = 8;
+  var a = Math.pow(2, (1 / 12));
+  var NoteNames = ["A", "A#", "B", "C", "C#", "D", "D#", "E", "F", "F#", "G", "G#"];
+
+  function mod(n, m) {
+    return ((n % m) + m) % m;
+  }
+
+  function getNoteFreq(note) {
+    note = Math.round(note);
+    return 440 * Math.pow(a, note);
+  }
+
+  function getNoteName(note) {
+    return NoteNames[mod(note, 12)] + (Math.floor((note + 9) / 12) + 4);
+  }
+
+  function getNoteNamesAndFreqsBetween(n0, n1) {
+    n0 = Math.round(n0); n1 = Math.round(n1);
+    var result = [];
+    for (var i = (n0 + 1); i < n1; ++i) {
+      result.push({ freq: getNoteFreq(i), name: getNoteName(i) });
+    }
+    return result;
+  }
+
+  function draw() {
+    _ctx.strokeStyle = _ctx.fillStyle = "#FFFFFF";
+
+    // Clear canvas    
+    _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
+
+    // Draw objects
+    _objects.forEach(function (obj) {
+      _ctx.beginPath();
+      for (var i = 0; i < obj.length - 1; ++i) {
+        var p0 = obj[i];
+        var p1 = obj[i + 1];
+        _ctx.moveTo(p0.x, p0.y);
+        _ctx.lineTo(p1.x, p1.y);
+      }
+      _ctx.stroke();
+    });
+
+    // Draw mouse hover line if there is one
+    drawHoverLine();
+  }
+
+  function drawHoverLine() {
+    if (_lineHover) {
+      _ctx.beginPath();
+      _ctx.strokeStyle = _lineHoverStyle;
+      _ctx.moveTo(_lineHover[0].x, _lineHover[0].y);
+      _ctx.lineTo(_lineHover[1].x, _lineHover[1].y);
+      _ctx.stroke();
+    }
+  }
+
+  function getCanvasCoord(e) {
+    var rect = _canvas.getBoundingClientRect();
+    return { x: e.clientX - rect.left, y: e.clientY - rect.top };
+  }
+
+  function finishCurrentObj(closePath) {
+    closePath = closePath || false;
+    if (closePath) _objCur.push(_objCur[0]);
+    _objCur = [];
+    _objects.push(_objCur);
+    _lineHover = null;
+  }
+
+  function addPoint(e) {
+    var p = getCanvasCoord(e);
+    if (_objCur.length) {
+      var pFirst = _objCur[0];
+      if (Math.getDistance(p, pFirst) <= MaxDist) {
+        // Finish object and init new one
+        finishCurrentObj(true);
+        return;
+      }
+    }
+    _objCur.push(p);
+  }
+
+  var _audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+  var _freq; // Hz
+  var _frameCount;
+  var _audioBuf;
+  var _source = null;
+
+  function updateOsc() {
+    if (_objects[0].length < 2) { stopAudio(); drawNullWaveForms(); return; }
+    if (_source != null) _source.stop();
+    _frameCount = Math.round(_audioCtx.sampleRate / _freq);
+    _audioBuf = _audioCtx.createBuffer(2, _frameCount, _audioCtx.sampleRate);
+    _source = _audioCtx.createBufferSource();
+    var bufL = _audioBuf.getChannelData(0);
+    var bufR = _audioBuf.getChannelData(1);
+    if (_switchChnl) generateWaveFormsFromPoints(bufR, bufL, _frameCount);
+    else generateWaveFormsFromPoints(bufL, bufR, _frameCount);
+
+    // Draw waveforms
+    drawWaveForm(bufL, document.getElementById("cnvWavL"));
+    drawWaveForm(bufR, document.getElementById("cnvWavR"));
+
+    // Play buffer
+    _source.buffer = _audioBuf;
+    _source.connect(_audioCtx.destination);
+    _source.loop = true;
+    _source.start();
+  }
+
+  function drawWaveForm(buf, canvas) {
+    var ctx = canvas.getContext("2d");
+    var w = canvas.width;
+    var h = canvas.height;
+    var wPx = w / buf.length; // Width of one "pixel"
+
+    ctx.fillStyle = "#FFFFFF";
+    ctx.clearRect(0, 0, w, h);
+    ctx.beginPath();
+    for (var i = 0; i < buf.length; ++i) {
+      var x = i * wPx;
+      var y = (1 - ((buf[i] + 1) / 2)) * h;
+      ctx.fillRect(x, y, wPx, 1);
+    }
+  }
+
+  Math.getDistance = function (point0, point1) {
+    var dX = point1.x - point0.x;
+    var dY = point1.y - point0.y;
+    return Math.sqrt(dX * dX + dY * dY);
+  };
+
+  function getPathLen() {
+    var len = 0;
+    _objects.forEach(function (obj) {
+      for (var i = 0; i < obj.length - 1; ++i) {
+        var p0 = obj[i];
+        var p1 = obj[i + 1];
+        len += Math.getDistance(p0, p1);
+      }
+    });
+    return len;
+  }
+
+  function interpolateInto(bufOvr, buf, len) {
+    var i, j, s, acc = 0;
+
+    // Interpolate
+    for (i = 0; i < len; ++i) {
+      var posOvr = (i * OvrSmp) - (OvrSmp / 2);
+      acc = 0;
+      for (j = 0; j < OvrSmp; ++j) {
+        var k = posOvr + j;
+        s = (k < 0) ? bufOvr[bufOvr.length + k] : bufOvr[k];
+        acc += s;
+      }
+      buf[i] = acc / OvrSmp;
+    }
+  }
+
+  function generateWaveFormsFromPoints(buf0, buf1, len) {
+    var pos = 0;  // Position in buffers
+    var segSmpCnt;
+    var w = _canvas.width;
+    var h = _canvas.height;
+
+    // Create temporary overampling buffers
+    var lenOvr = len * OvrSmp;
+    var buf0Ovr = new Array(lenOvr);
+    var buf1Ovr = new Array(lenOvr);
+
+    // First of all determine the length of the whole path
+    var lenPath = getPathLen();
+
+    // Loop through objects
+    var objCnt = (_objCur.length < 2) ? _objects.length - 1 : _objects.length; // Omit current object if empty
+    for (var k = 0; k < objCnt; ++k) {
+      let obj = _objects[k];
+      // Loop through segments of object
+      for (var j = 0; j < obj.length - 1; ++j) {
+        var p0 = obj[j];
+        var p1 = obj[j + 1];
+        var lenSeg = Math.getDistance(p0, p1);
+        // Number of samples in segment:
+        if ((k == (objCnt - 1)) && (j == (obj.length - 2))) segSmpCnt = lenOvr - pos; // Special last segment treatment
+        else segSmpCnt = Math.round((lenSeg / lenPath) * lenOvr);
+        // Draw segment
+        for (var i = 0; i < segSmpCnt; i++) {
+          buf0Ovr[pos + i] = (2.0 * ((p0.x / w) + ((p1.x / w) - (p0.x / w)) * (i / segSmpCnt))) - 1.0;
+          buf1Ovr[pos + i] = (2.0 - (2.0 * ((p0.y / h) + ((p1.y / h) - (p0.y / h)) * (i / segSmpCnt)))) - 1.0;
+        }
+        pos += segSmpCnt;
+      }
+    }
+
+    // Interpolate result into audio buffers
+    interpolateInto(buf0Ovr, buf0, len);
+    interpolateInto(buf1Ovr, buf1, len);
+  }
+
+  function drawingArea_click(e) {
+    addPoint(e);
+    draw();
+    updateOsc();
+  }
+
+  function drawingArea_mousemove(e) {
+    if (!_objCur.length) { _lineHover = null; return; }
+    var pFirst = _objCur[0];
+    var pLast = _objCur[_objCur.length - 1];
+    var p = getCanvasCoord(e);
+    _lineHover = [pLast, p];
+    if (Math.getDistance(p, pFirst) <= MaxDist) {
+      _lineHoverStyle = "#00FF00";
+    }
+    else _lineHoverStyle = "#FFFFFF";
+    draw();
+  }
+
+  function drawNullLine(canvas) {
+    var ctx = canvas.getContext("2d");
+    var w = canvas.width;
+    var h = canvas.height;
+    ctx.strokeStyle = "#FFFFFF";
+    ctx.clearRect(0, 0, w, h);
+    ctx.beginPath();
+    ctx.moveTo(0, h / 2);
+    ctx.lineTo(w, h / 2);
+    ctx.stroke();
+  }
+
+  function drawNullWaveForms() {
+    var cnvL = document.getElementById("cnvWavL");
+    var cnvR = document.getElementById("cnvWavR");
+    drawNullLine(cnvL);
+    drawNullLine(cnvR);
+  }
+
+  function btnReset_click(e) {
+    _objCur = [];
+    _objects = [_objCur];
+    draw();
+    stopAudio();
+    drawNullWaveForms();
+  }
+
+  function stopAudio() {
+    if (_source != null) { _source.stop(); _source = null; }
+  }
+
+  function btnStop_click(e) {
+    stopAudio();
+  }
+
+  function selFreq_change(e) {
+    var sel = e.target;
+    _freq = parseFloat(sel.value);
+    _lblFreq.innerHTML = _freq.toFixed(2) + " Hz";
+    _lblSmpCnt.innerHTML = "Number of samples: " + Math.round(_audioCtx.sampleRate / _freq);
+    updateOsc();
+  }
+
+  var _switchChnl = false;
+
+  function btnSwitchChannels_click(e) {
+    _switchChnl = !_switchChnl;
+    updateOsc();
+  }
+
+  function cancelLine() {
+    if (_lineHover) {
+      if (_objCur.length > 1) {
+        finishCurrentObj();
+      }
+      else {
+        _objCur.pop();
+        _lineHover = null;
+      }
+      draw();
+    }
+  }
+
+  function undo() {
+    if (_objects.length == 1 && _objCur.length == 0) return;
+    if (_objCur.length == 0) {
+      _objects.pop();
+      _objCur = _objects[_objects.length - 1];
+      _objCur.pop();
+      updateOsc();
+      draw();
+    }
+    else if (_objCur.length == 1) cancelLine();
+    else {
+      _objCur.pop();
+      updateOsc();
+      draw();
+    }
+  }
+
+  function document_keypress(e) {
+    // ToDo: ?    
+  }
+
+  function document_keydown(e) {
+    var nKey = e.keyCode || e.which || 0;
+    switch (nKey) {
+      case 27:
+        cancelLine();
+        break;
+
+      case 8:
+        if (_objCur.length) undo();
+        e.preventDefault();
+        break;
+
+      case 90:
+        if (e.ctrlKey) undo();
+        break;
+    }
+  }
+
+  // Converts an audio-buffer segment to a Blob using WAVE representation
+  function bufferToWave(buffers, len, sampleRate) {
+    var numOfChan = buffers.length,
+      length = len * numOfChan * 2 + 44,
+      buffer = new ArrayBuffer(length),
+      view = new DataView(buffer),
+      i, sample, pos = 0, offset = 0;
+
+    // write WAVE header
+    setUint32(0x46464952);                         // "RIFF"
+    setUint32(length - 8);                         // file length - 8
+    setUint32(0x45564157);                         // "WAVE"
+
+    setUint32(0x20746d66);                         // "fmt " chunk
+    setUint32(16);                                 // length = 16
+    setUint16(1);                                  // PCM (uncompressed)
+    setUint16(numOfChan);
+    setUint32(sampleRate);
+    setUint32(sampleRate * 2 * numOfChan);         // avg. bytes/sec
+    setUint16(numOfChan * 2);                      // block-align
+    setUint16(16);                                 // 16-bit (hardcoded in this demo)
+
+    setUint32(0x61746164);                         // "data" - chunk
+    setUint32(length - pos - 4);                   // chunk length
+
+    while (pos < length) {
+      for (i = 0; i < numOfChan; i++) {             // interleave channels
+        sample = Math.max(-1, Math.min(1, buffers[i][offset])); // clamp
+        sample = (0.5 + sample < 0 ? sample * 32768 : sample * 32767) | 0; // scale to 16-bit signed int
+        view.setInt16(pos, sample, true);           // update data chunk
+        pos += 2;
+      }
+      offset++;                                     // next source sample
+    }
+
+    // create Blob
+    return new Blob([buffer], { type: "audio/wav" });
+
+    function setUint16(data) {
+      view.setUint16(pos, data, true);
+      pos += 2;
+    }
+
+    function setUint32(data) {
+      view.setUint32(pos, data, true);
+      pos += 4;
+    }
+  }
+
+  function btnSaveDrw_click(e) {
+    if (_objects.length <= 1) return;
+    var fileContent = {
+      objects: _objects,
+      switchChannels: _switchChnl
+    };
+    if (fileContent.objects[fileContent.objects.length - 1].length == 0) fileContent.objects.pop();
+    var json = JSON.stringify(fileContent);
+    downloadJSON(json, "drawing.json");
+  }
+
+  function loadDrawing(json) {
+    try {
+      var fileContent = JSON.parse(json);
+      if (fileContent.objects && (fileContent.objects.length > 0)) {
+        _objCur = [];
+        _objects = fileContent.objects;
+        _objects.push(_objCur);
+        _switchChnl = fileContent.switchChannels;
+        clearFileError();
+        updateOsc();
+        draw();
+      }
+      else { showFileError("Not a drawing."); }
+    }
+    catch (error) { showFileError("Not a drawing."); }
+    document.getElementById("inpFileDrw").value = "";
+
+    function showFileError(msg) { document.getElementById("lblFileErr").innerHTML = msg; }
+    function clearFileError() { document.getElementById("lblFileErr").innerHTML = ""; }
+  }
+
+  function inpFileDrw_change(e) {
+    var file = e.target.files[0];
+    if (!file) return;
+    var reader = new FileReader();
+    reader.onload = function (e) {
+      var contents = e.target.result;
+      loadDrawing(contents);
+    };
+    reader.readAsText(file);
+  }
+
+  function downloadURL(url, fileName) {
+    var a = document.createElement("a");
+    a.style.display = "none";
+    a.href = url;
+    a.download = fileName;
+    document.body.appendChild(a);
+    a.click();
+    setTimeout(function () {
+      document.body.removeChild(a);
+      URL.revokeObjectURL(url);
+    }, 3000);
+  }
+
+  function downloadJSON(json, fileName) {
+    var blob = new Blob([json], { type: "application/json" });
+    var url = URL.createObjectURL(blob);
+    downloadURL(url, fileName);
+  }
+
+  function btnSaveChnlL_click(e) {
+    if (!_audioBuf) return;
+    var url = URL.createObjectURL(bufferToWave([_audioBuf.getChannelData(0)], _frameCount, _audioCtx.sampleRate));
+    downloadURL(url, "left_channel.wav");
+  }
+
+  function btnSaveChnlR_click(e) {
+    if (!_audioBuf) return;
+    var url = URL.createObjectURL(bufferToWave([_audioBuf.getChannelData(1)], _frameCount, _audioCtx.sampleRate));
+    downloadURL(url, "right_channel.wav");
+  }
+
+  function btnSaveStereo_click(e) {
+    if (!_audioBuf) return;
+    var url = URL.createObjectURL(bufferToWave([_audioBuf.getChannelData(0), _audioBuf.getChannelData(1)], _frameCount, _audioCtx.sampleRate));
+    downloadURL(url, "stereo.wav");
+  }
+
+  function populateFreqDropDown(selFreq) {
+    var elemOpt, notes = getNoteNamesAndFreqsBetween(-41, -4);
+    notes.forEach(function(note) {
+      elemOpt = document.createElement("option");
+      elemOpt.value = note.freq;
+      elemOpt.text = note.name;
+      selFreq.appendChild(elemOpt);
+      if (note.name === "A2") elemOpt.selected = true;
+    });
+  }
+
+  var _lblFreq;
+  var _lblSmpCnt;
+
+  function init() {
+    initCanvas();
+    document.getElementById("btnReset").addEventListener("click", btnReset_click);
+    document.getElementById("btnStop").addEventListener("click", btnStop_click);
+    var selFreq = document.getElementById("selFreq");
+    populateFreqDropDown(selFreq);
+    selFreq.addEventListener("change", selFreq_change);
+    _lblFreq = document.getElementById("lblFreq");
+    _freq = parseFloat(selFreq.value);
+    _lblFreq.innerHTML = _freq.toFixed(2) + " Hz";
+    _lblSmpCnt = document.getElementById("lblSmpCnt");
+    _lblSmpCnt.innerHTML = "Number of samples: " + Math.round(_audioCtx.sampleRate / _freq);
+    var sampleRate = (_audioCtx.sampleRate / 1000).toFixed(2);
+    document.getElementById("lblSmpRate").innerHTML = "Current sample rate: " + sampleRate + " kHz";
+    document.getElementById("btnSwitchChannels").addEventListener("click", btnSwitchChannels_click);
+    document.getElementById("btnSaveDrw").addEventListener("click", btnSaveDrw_click);
+    document.getElementById("inpFileDrw").addEventListener("change", inpFileDrw_change);
+    document.getElementById("btnSaveChnlL").addEventListener("click", btnSaveChnlL_click);
+    document.getElementById("btnSaveChnlR").addEventListener("click", btnSaveChnlR_click);
+    document.getElementById("btnSaveStereo").addEventListener("click", btnSaveStereo_click);
+    document.addEventListener("keydown", document_keydown);
+    document.addEventListener("keypress", document_keypress);
+    drawNullWaveForms();
+  }
+
+  function initCanvas() {
+    _canvas = document.getElementById("drawingArea");
+    _ctx = _canvas.getContext("2d");
+    _canvas.addEventListener("click", drawingArea_click);
+    _canvas.addEventListener("mousemove", drawingArea_mousemove);
+    _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
+  }
+
+  function windowLoadHandler(e) {
+    init();
+  }
+
+  window.addEventListener("load", windowLoadHandler);
+})();
