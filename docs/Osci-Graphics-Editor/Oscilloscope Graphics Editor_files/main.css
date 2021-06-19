@@ -4,7 +4,7 @@ body {
 }
 
 #drawingArea {
-    background-color: black;
+    /* background-color: black; */
     float: left;
     cursor: crosshair;
     opacity: 0.1;
