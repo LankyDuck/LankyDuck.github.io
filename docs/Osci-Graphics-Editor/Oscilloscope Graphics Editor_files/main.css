@@ -4,9 +4,10 @@ body {
 }
 
 #drawingArea {
-    background-color: rgba(0, 0, 0, 0.219);
+    background-color: black;
     float: left;
     cursor: crosshair;
+    opacity: 0.5;
 }
 
 #editorArea {
