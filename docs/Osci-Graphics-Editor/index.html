@@ -41,7 +41,9 @@
          
 
         <div id="editorArea">
-            <canvas id="drawingArea" width="640" height="640"></canvas>
+            <canvas id="drawingArea" width="640" height="640">
+                <div id="imgElement"></div>
+            </canvas>
             
             <div id="buttons">
                 <button type="button" id="btnReset">Reset</button>
@@ -60,7 +62,6 @@
             </div>
             
         </div>
-        <div id="imgElement"></div>
         <div id="waveformDisplayArea">
             <label for="cnvWavL">Left Channel:</label>
             <canvas id="cnvWavL" width="320" height="120"></canvas>
