@@ -4,6 +4,7 @@ body {
 }
 
 #drawingArea {
+    position: relative;
     background-color: black;
     float: left;
     cursor: crosshair;
