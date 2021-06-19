@@ -1,0 +1,85 @@
+body {
+    margin:0;
+    background-image: url("https://www.lankyduck.com/legacy/backgroundEpic.gif");
+    background-repeat: no-repeat;
+    background-size: cover; 
+    overflow:hidden;
+   }
+.top-off-center{
+    position: absolute;
+    top: 5px;
+    left: 50%;
+}
+.top-right{
+    position: absolute;
+    top: 5px;
+    left: 5px;
+}
+.bottom-right{
+    position: absolute;
+    bottom: 5px;
+    right: 5px;
+}
+.bottom-left{
+    position: absolute;
+    bottom: 5px;
+    left: 5px;
+}
+.TVC{
+    position: absolute;
+    bottom: 0px;
+    left: 400px;
+}
+.WebsiteTests{
+    position: absolute;
+    bottom: 450px;
+    left: 800px;
+}
+.Terminal{
+    position: absolute;
+    bottom: 300px;
+    left:600px;
+}
+bruh{
+    font-size: 60px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background: -webkit-linear-gradient(#2b31d1,#7f10ff);
+    background-clip:border-box ;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+bruhBig{
+    font-size: 80px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background: -webkit-linear-gradient(#2b31d1,#7f10ff);
+    background-clip:border-box ;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+bruhSmall{
+    font-size: 15px;
+    font-family: 'Raleway', sans-serif;
+    font-weight: 400;
+    font-style: normal;
+    background: -webkit-linear-gradient(#2b31d1,#7f10ff);
+    background-clip:border-box ;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+.container2{
+    height: 800px;
+    margin: 80px;
+    overflow-y:scroll;
+    font-size: 20px;
+    font-family: 'Raleway', snas-serif;
+    font-weight: 400;
+    font-style: normal;
+    color:teal;
+}
+.container2::-webkit-scrollbar {
+    display:none;
+} 
