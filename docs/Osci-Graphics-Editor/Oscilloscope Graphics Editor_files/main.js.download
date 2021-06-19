@@ -5,7 +5,7 @@
   var _objCur = [];           // An object is an array of points
   var _objects = [_objCur];   // Array of objects
   var _lineHover = null;      // An array of two points
-  var _lineHoverStyle = "#FFFFFF";
+  var _lineHoverStyle = "#0004ff";
 
   // Constants
   var MaxDist = 5;
@@ -36,7 +36,7 @@
   }
 
   function draw() {
-    _ctx.strokeStyle = _ctx.fillStyle = "#FFFFFF";
+    _ctx.strokeStyle = _ctx.fillStyle = "#0004ff";
 
     // Clear canvas    
     _ctx.clearRect(0, 0, _canvas.width, _canvas.height);
@@ -127,7 +127,7 @@
     var h = canvas.height;
     var wPx = w / buf.length; // Width of one "pixel"
 
-    ctx.fillStyle = "#FFFFFF";
+    ctx.fillStyle = "#0004ff";
     ctx.clearRect(0, 0, w, h);
     ctx.beginPath();
     for (var i = 0; i < buf.length; ++i) {
@@ -226,7 +226,7 @@
     if (Math.getDistance(p, pFirst) <= MaxDist) {
       _lineHoverStyle = "#00FF00";
     }
-    else _lineHoverStyle = "#FFFFFF";
+    else _lineHoverStyle = "#0004ff";
     draw();
   }
 
@@ -234,7 +234,7 @@
     var ctx = canvas.getContext("2d");
     var w = canvas.width;
     var h = canvas.height;
-    ctx.strokeStyle = "#FFFFFF";
+    ctx.strokeStyle = "#0004ff";
     ctx.clearRect(0, 0, w, h);
     ctx.beginPath();
     ctx.moveTo(0, h / 2);
