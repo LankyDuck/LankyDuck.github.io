@@ -12,7 +12,7 @@
         <h1 style = "color:black;" > 
             Oscilloscope Graphics Editor - Shamelessly stolen and adapted to import images from http://bummsn.de/osc_txt/
         </h1> 
-        
+
         <div class="info">
             <input type="file" id="files" />
             <output id="list"></output>
@@ -25,7 +25,7 @@
                 
                   reader.onload = (function(theFile) {
                     return function(e) {
-                      document.getElementById('list').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="500"/>'].join('');
+                      document.getElementById('editorArea').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="500"/>'].join('');
                     };
                   })(f);
             
