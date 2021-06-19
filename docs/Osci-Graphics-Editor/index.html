@@ -7,7 +7,25 @@
         <script src="./Oscilloscope Graphics Editor_files/main.js.download"></script>
         <link rel="shortcut icon" type="image/png" href="http://bummsn.de/osc_txt/img/3d_osc_cube.png">
     </head>
+    <style>
+        #bruh {
+            position: absolute;
+            width: 300px;
+            height: 150px;
+            background-color: lightblue;
+            border: 1px solid black;
+        }
 
+        #DIV2 {
+            position: relative;
+            top: 130px;
+            left: 30px;
+            width: 300px;
+            height: 150px;
+            background-color: coral;
+            border: 1px solid black;
+        }
+    </style>
     <body>
         <h1 style = "color:black;" > 
             Oscilloscope Graphics Editor - Shamelessly stolen and adapted to import images from http://bummsn.de/osc_txt/
@@ -25,7 +43,7 @@
                 
                   reader.onload = (function(theFile) {
                     return function(e) {
-                      document.getElementById('b l a c k').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="500"/>'].join('');
+                      document.getElementById('bruh').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="500"/>'].join('');
                     };
                   })(f);
             
@@ -41,7 +59,7 @@
          </div>
 
         <div id="editorArea">
-            <div id="b l a c k">
+            <div id="bruh">
             </div>
             <canvas id="drawingArea" width="640" height="640"></canvas>
             <div id="buttons">
