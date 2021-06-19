@@ -8,6 +8,7 @@ body {
     background-color: black;
     float: left;
     cursor: crosshair;
+    z-index: 2;
     /* opacity: 0.5; */
 }
 
@@ -54,6 +55,7 @@ body {
 
 #imgElement {
     position: absolute; 
+    z-index: 1;
     /*width: 300px;
     height: 150px;
     background-color: lightblue;
