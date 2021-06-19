@@ -7,13 +7,13 @@ body {
     background-color: rgb(0, 0, 0);
     float: left;
     cursor: crosshair;
-    opacity: 0.5;
+    /* opacity: 0.5; */
 }
 
 #editorArea {
     float: left;
     margin-right: 10px;
-    opacity: 0.5;
+    /* opacity: 0.5; */
 }
 
 #buttons {
@@ -32,7 +32,7 @@ body {
     float: left;
     clear: left;
     margin-bottom: 10px;
-    opacity: 0.5;
+    /* opacity: 0.5; */
 }
 
 #waveformDisplayArea label, #waveformDisplayArea button {
