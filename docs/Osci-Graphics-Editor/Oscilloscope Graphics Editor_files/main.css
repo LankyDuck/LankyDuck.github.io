@@ -54,7 +54,7 @@ body {
 }
 
 #imgElement {
-    /* position: absolute; */
+    position: absolute; 
     z-index: 1;
     /*width: 300px;
     height: 150px;
