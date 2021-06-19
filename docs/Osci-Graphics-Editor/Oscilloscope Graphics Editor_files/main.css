@@ -10,6 +10,7 @@ body {
 }
 
 #editorArea {
+    background-color: gray;
     float: left;
     margin-right: 10px;
 }
@@ -46,4 +47,12 @@ body {
 
 #lblFileErr {
     color: red;
+}
+
+#bruh {
+    position: absolute;
+    /*width: 300px;
+    height: 150px;
+    background-color: lightblue;
+    border: 1px solid black */
 }
