@@ -4,10 +4,9 @@ body {
 }
 
 #drawingArea {
-    /* background-color: black; */
+    background-color: rgb(90, 165, 29); 
     float: left;
     cursor: crosshair;
-    opacity: 0.1;
 }
 
 #editorArea {
@@ -32,6 +31,7 @@ body {
     float: left;
     clear: left;
     margin-bottom: 10px;
+    opacity: 0.5;
 }
 
 #waveformDisplayArea label, #waveformDisplayArea button {
