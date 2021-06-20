@@ -22,6 +22,7 @@
             var val;
             function sliderChange(val) {
                 document.getElementById('output').innerHTML = val;
+                document.getElementById('imgElement').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="', val, '"/>'].join('');
             }
             //document.getElementById('slider').value = 50;
 
@@ -33,7 +34,7 @@
                 
                   reader.onload = (function(theFile) {
                     return function(e) {
-                      document.getElementById('imgElement').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="', val, '"/>'].join('');
+                      document.getElementById('imgElement').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="500"/>'].join('');
                     };
                   })(f);
             
