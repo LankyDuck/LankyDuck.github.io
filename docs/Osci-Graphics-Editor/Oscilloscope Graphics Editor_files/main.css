@@ -20,7 +20,6 @@ body {
 }
 
 #buttons {
-    z-index: 1;
     float: left;
     clear: left;
     margin-top: 10px;
@@ -63,4 +62,8 @@ body {
     height: 150px;
     background-color: lightblue;
     border: 1px solid black */
+}
+
+#slider {
+    z-index: 1;
 }
