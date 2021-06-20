@@ -52,14 +52,14 @@
         <div id="editorArea">
             <canvas id="drawingArea" width="640" height="640"></canvas>
             <div id="buttons">
+                <label>Scale: </label>
+                <input id="slider" type="range" min="100" max="1000" step="5" oninput="sliderChange(this.value)">
+                <output id="output"></output>
                 <button type="button" id="btnReset">Reset</button>
                 <button type="button" id="btnStop">Stop Audio</button>
                 <button type="button" id="btnSwitchChannels">L &lt;-&gt; R</button>
                 <select id="selFreq"><option value="43.65352892912541">F1</option><option value="46.24930283895422">F#1</option><option value="48.99942949771858">G1</option><option value="51.913087197493056">G#1</option><option value="54.999999999999915">A1</option><option value="58.270470189761156">A#1</option><option value="61.73541265701542">B1</option><option value="65.40639132514957">C2</option><option value="69.29565774421793">C#2</option><option value="73.4161919793518">D2</option><option value="77.78174593052012">D#2</option><option value="82.40688922821738">E2</option><option value="87.30705785825087">F2</option><option value="92.49860567790849">F#2</option><option value="97.99885899543722">G2</option><option value="103.82617439498618">G#2</option><option value="109.99999999999989">A2</option><option value="116.54094037952237">A#2</option><option value="123.4708253140309">B2</option><option value="130.8127826502992">C3</option><option value="138.59131548843592">C#3</option><option value="146.83238395870364">D3</option><option value="155.56349186104035">D#3</option><option value="164.81377845643485">E3</option><option value="174.61411571650183">F3</option><option value="184.99721135581706">F#3</option><option value="195.99771799087452">G3</option><option value="207.65234878997245">G#3</option><option value="219.9999999999999">A3</option><option value="233.08188075904488">A#3</option><option value="246.94165062806198">B3</option><option value="261.6255653005985">C4</option><option value="277.182630976872">C#4</option><option value="293.66476791740746">D4</option><option value="311.1269837220808">D#4</option><option value="329.62755691286986">E4</option></select>
                 <label id="lblFreq">110.00 Hz</label>
-                <label>Scale: </label>
-                <input id="slider" type="range" min="100" max="1000" step="5" oninput="sliderChange(this.value)">
-                <output id="output"></output>
             </div>
             <div id="fileOperationButtons">
 
