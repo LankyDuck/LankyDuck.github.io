@@ -20,6 +20,7 @@ body {
 }
 
 #buttons {
+    z-index: 2;
     float: left;
     clear: left;
     margin-top: 10px;
@@ -27,10 +28,12 @@ body {
 }
 
 #waveformDisplayArea {
+    z-index: 2;
     float: left;
 }
 
 #cnvWavL, #cnvWavR {
+    z-index: 2;
     background-color: black;
     float: left;
     clear: left;
@@ -38,18 +41,21 @@ body {
 }
 
 #waveformDisplayArea label, #waveformDisplayArea button {
+    z-index: 2;
     float: left;
     clear: left;
     margin-bottom: 5px;
 }
 
 #fileOperationButtons, #fileErrorContainer {
+    z-index: 2;
     float: left;
     clear: left;
     margin-bottom: 10px;
 }
 
 #lblFileErr {
+    z-index: 2;
     color: red;
 }
 
