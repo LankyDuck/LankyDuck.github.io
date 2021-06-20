@@ -8,7 +8,7 @@
         <link rel="shortcut icon" type="image/png" href="https://www.lankyduck.com/favicon.png">
     </head>
     <body>
-        <input id="slider" type="range" min="50" max="100" step="5" oninput="sliderChange(this.value)">
+        <input id="slider" type="range" min="0" max="100" step="5" oninput="sliderChange(this.value)">
         <output id="output"></output>
 
 
@@ -19,9 +19,9 @@
         <div class="info">
             <input type="file" id="files" />
             <script>
-            var val;
             function sliderChange(val) {
                 document.getElementById('output').innerHTML = val;
+                document.getElementById('imgElement').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="', val, '"/>'].join('');
             }
             //document.getElementById('slider').value = 50;
 
