@@ -20,11 +20,7 @@
             <input type="file" id="files" />
             <script>
             var val;
-            function sliderChange(val) {
-                document.getElementById('output').innerHTML = val;
-                document.getElementById('imgElement').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="', val, '"/>'].join('');
-            }
-            //document.getElementById('slider').value = 50;
+            var string;
 
             if (window.FileReader) {
               function handleFileSelect(evt) {
@@ -35,6 +31,7 @@
                   reader.onload = (function(theFile) {
                     return function(e) {
                       document.getElementById('imgElement').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="500"/>'].join('');
+                      string = ['<img src="', e.target.result,'" title="', theFile.name, '" width="'].join('');
                     };
                   })(f);
             
@@ -42,6 +39,10 @@
               }
              } else {
               alert('This browser does not support FileReader');
+            }
+            function sliderChange(val) {
+                document.getElementById('output').innerHTML = val;
+                document.getElementById('imgElement').innerHTML = [string, val, '"/>'].join('');
             }
             
               document.getElementById('files').addEventListener('change', handleFileSelect, false);
