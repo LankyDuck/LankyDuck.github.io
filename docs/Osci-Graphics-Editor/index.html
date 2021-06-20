@@ -8,9 +8,9 @@
         <link rel="shortcut icon" type="image/png" href="https://www.lankyduck.com/favicon.png">
     </head>
     <body>
-        <div class="slidecontainer">
-            <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
-          </div>
+        <input id="slider" type="range" min="50" max="100" step="10" oninput="sliderChange(this.value)">
+        <output id="output"></output>
+
 
         <h1 style = "color:black;" > 
             Oscilloscope Graphics Editor - Shamelessly stolen and adapted to import images from http://bummsn.de/osc_txt/
@@ -18,9 +18,11 @@
 
         <div class="info">
             <input type="file" id="files" />
-            <output id="list"></output>
             <script>
-            
+            function sliderChange(val) {
+                document.getElementById('output').innerHTML = val;
+            }
+            document.getElementById('slider').value = 50;
 
             if (window.FileReader) {
               function handleFileSelect(evt) {
