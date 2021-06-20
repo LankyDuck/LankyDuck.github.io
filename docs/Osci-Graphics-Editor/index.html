@@ -28,7 +28,7 @@
                 
                   reader.onload = (function(theFile) {
                     return function(e) {
-                      document.getElementById('imgElement').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="500"/>'].join('');
+                      document.getElementById('imgElement').innerHTML = ['<img src="', e.target.result,'" title="', theFile.name, '" width="100"/>'].join('');
                       string = ['<img src="', e.target.result,'" title="', theFile.name, '" width="'].join('');
                     };
                   })(f);
