@@ -11,7 +11,7 @@
         <div class="slidecontainer">
             <input type="range" min="1" max="100" value="50" class="slider" id="myRange">
           </div>
-          
+
         <h1 style = "color:black;" > 
             Oscilloscope Graphics Editor - Shamelessly stolen and adapted to import images from http://bummsn.de/osc_txt/
         </h1> 
@@ -20,6 +20,14 @@
             <input type="file" id="files" />
             <output id="list"></output>
             <script>
+            var slider = document.getElementById("myRange");
+            var output = document.getElementById("demo");
+            output.innerHTML = slider.value; // Display the default slider value
+
+            slider.oninput = function() {
+                output.innerHTML = this.value;
+            }
+
             if (window.FileReader) {
               function handleFileSelect(evt) {
                 var files = evt.target.files;
