@@ -25,6 +25,7 @@ body {
     clear: left;
     margin-top: 10px;
     margin-bottom: 10px;
+    color:rgb(110, 110, 110)
 }
 
 #waveformDisplayArea {
