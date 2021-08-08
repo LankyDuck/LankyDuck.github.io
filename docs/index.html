@@ -18,6 +18,7 @@
             var url
             var directory = "C:\\sys\\web\\user>"
             var selection = "bruh"
+            var test = "https://cdn.pixabay.com/photo/2013/07/12/17/47/test-pattern-152459_960_720.png"
             var term = $('body').terminal({
                 help: function (command) {
                     if (command === undefined){
@@ -114,6 +115,9 @@
                 founder: function () {
                     this.echo('Zac Holmes - "LankyDuck"');
                 },
+                farquad: function () {
+                    this.echo(test)
+                }
             }, {
                 greetings: '█▀▄ █ █ █▀▀ █▄▀   █▀█ █▀\n█▄▀ █▄█ █▄▄ █ █   █▄█ ▄█\n\nDuckOS © Copyright 2021 L.A.N.K.Y Systems inc.\nType \'help\' to get started\n',
                 prompt: "C:\\sys\\web\\user>",
