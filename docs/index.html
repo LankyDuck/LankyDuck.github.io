@@ -36,9 +36,6 @@
                     else if (command === "cd" || command === "Cd"){
                         this.echo("-cd: change the directory. Takes an input [directory]. Use Tilda [~] to move to exit current folder")
                     }
-                    else if (command === "nano" || command === "Nano"){
-                        this.echo("-nano: scuffed text viewer. Takes an input [file.txt].")
-                    }
                     else if (command === "legacy" || command === "Legacy"){
                         this.echo("-legacy: Redirect to legacy website, shit is brokey and I don't care to fix it")
                     }
@@ -70,7 +67,7 @@
                                 this.echo("I post occasionally post about my flying adventures on my instagram --> https://www.instagram.com/lanky.duck/")
                             }
                             else if (selection === "Osci" || selection === "osci"){
-                                this.echo("I didn't really document my oscilloscope tinkerings very well, but you can checkout my tiktok which basically sums up what i've been doing --> https://tiktok.com/@lanky.duck/video/6975621767566085382?is_from_webapp=v1\nYou can also check out the custom website I yoinked and tweaked from bummsn here --> https://www.lankyduck.com/Osci-Graphics-Editor/")
+                                this.echo("I didn't really document my oscilloscope tinkerings very well, but you can checkout my tiktok(lanky.duck) which basically sums up what i've been doing\nYou can also check out the custom website I yoinked and tweaked from bummsn here --> https://www.lankyduck.com/Osci-Graphics-Editor/")
                             }
                             else if (selection === "" || selection !== "" ){
                                 this.echo(">Error: Please Select Project \n>Usage: \"Select Project: -[Selection]\"")
@@ -78,7 +75,7 @@
                         });
                     }
                     if(directory === "C:\\sys\\web\\user\\contact>"){
-                        this.echo("contact.txt\notherfile.txt")
+                        this.echo("Zac Holmes\nzac@lankyduck.com\nLankyDuck#5422 on Discord(preferred communication)")
                     }
                 },
                 cd: function (folder) {
@@ -116,21 +113,6 @@
                 founder: function () {
                     this.echo('Zac Holmes - "LankyDuck"');
                 },
-                nano: function (textfile) {
-                    if (!(textfile === undefined)){
-                        for (i = 0; i < files.length; i++ ){
-                            if (textfile === files[i][0]){
-                                url = files[i][1]
-                            }
-                        }
-                        this.echo("url: " + url)
-                        content = getContent()
-                        this.echo(content)
-                    }
-                    else{
-                        this.echo(">Usage: nano [file.txt]. Type command \"help nano\"")
-                    }
-                }
             }, {
                 greetings: '█▀▄ █ █ █▀▀ █▄▀   █▀█ █▀\n█▄▀ █▄█ █▄▄ █ █   █▄█ ▄█\n\nDuckOS © Copyright 2021 L.A.N.K.Y Systems inc.\nType \'help\' to get started\n',
                 prompt: "C:\\sys\\web\\user>",
@@ -138,11 +120,6 @@
             });
             function pageRedirectLegacy() {
                 window.location.replace("https://www.lankyduck.com/legacy/");
-            }
-            async function getContent() {
-                let response = await fetch(url)
-                let thegoodstuff = await response.text()
-                return thegoodstuff
             }
         </script>
     </body>
