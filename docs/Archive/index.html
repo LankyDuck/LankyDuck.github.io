@@ -1,3 +1,9 @@
+<!-- Current as of 8/7/2021 
+    changelog
+    - Changed ascii art to work better with mobile
+-->
+
+
 <!DOCTYPE html>
 <html lang="en">
 <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
@@ -24,40 +30,6 @@
             var directory = "C:\\sys\\web\\user>"
             var selection = "bruh"
             var term = $('body').terminal({
-                help: function (command) {
-                    if (command === undefined){
-                        this.echo("type help [command] for more information about the command")
-                        this.echo('   ls      | list directory\n  help    | display help\n    cd      | change directory\n    nano    | scuffed text viewer\n   osci    | oscilloscope audio generator')
-                    }
-                    else if (command === "iam" || command === "-iam"){
-                        this.echo("-iam: Says Hi to the user")
-                    }
-                    else if (command === "founder" || command === "-founder"){
-                        this.echo("-founder: Prints who the founder is")
-                    }
-                    else if (command === "ls" || command === "-ls"){
-                        this.echo("-ls: lists the content of the current directory")
-                    }
-                    else if (command === "cd" || command === "-cd"){
-                        this.echo("-cd: change the directory. Takes an input [directory]. Use Tilda [~] to move to exit current folder")
-                    }
-                    else if (command === "nano" || command === "-nano"){
-                        this.echo("-nano: scuffed text viewer. Takes an input [file.txt].")
-                    }
-                    else if (command === "legacy" || command === "-legacy"){
-                        this.echo("-legacy: Redirect to legacy website, shit is brokey and I don't care to fix it")
-                    }
-                    else if (command === "help" || command === "-help"){
-                        this.echo("[Error] you just hacked the system")
-                        this.echo("Congrats")
-                    }
-                    else{
-                        this.echo("Somehow you managed to break the help command. Good job. Did you accidentally capitalize a command? hmm?")
-                    }
-                },
-                fun: function () {
-                    this.echo('Fun Commands:\n  iam [your name]\n   founder\n   legacy')
-                },
                 iam: function (name) {
                     this.echo('Hello, ' + name +
                         '. Welcome to L.A.N.K.Y. OS');
@@ -112,6 +84,37 @@
                     } 
                     else {
                         this.echo('>Usage: cd [directory] - ls to list directory - use Tilda to exit current folder')
+                    }
+                },
+                help: function (command) {
+                    if (command === undefined){
+                        this.echo("type help[command] for more information about the command")
+                        this.echo('-iam     | iam [your name]\n-founder | who\'s the founder?\n-ls      | list directory\n-help    | display help\n-cd      | change directory\n-nano    | scuffed text viewer\n-legacy  | redirect to legacy site\n-osci    | oscilloscope audio generator')
+                    }
+                    else if (command === "iam" || command === "-iam"){
+                        this.echo("-iam: Says Hi to the user")
+                    }
+                    else if (command === "founder" || command === "-founder"){
+                        this.echo("-founder: Prints who the founder is")
+                    }
+                    else if (command === "ls" || command === "-ls"){
+                        this.echo("-ls: lists the content of the current directory")
+                    }
+                    else if (command === "cd" || command === "-cd"){
+                        this.echo("-cd: change the directory. Takes an input [directory]. Use Tilda [~] to move to exit current folder")
+                    }
+                    else if (command === "nano" || command === "-nano"){
+                        this.echo("-nano: scuffed text viewer. Takes an input [file.txt].")
+                    }
+                    else if (command === "legacy" || command === "-legacy"){
+                        this.echo("-legacy: Redirect to legacy website, shit is brokey and I don't care to fix it")
+                    }
+                    else if (command === "help" || command === "-help"){
+                        this.echo("[Error] you just hacked the system")
+                        this.echo("Congrats")
+                    }
+                    else{
+                        this.echo("Somehow you managed to break the help command. Good job. Did you accidentally capitalize a command? hmm?")
                     }
                 },
                 nano: function (textfile) {
