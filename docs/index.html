@@ -18,7 +18,7 @@
             var url
             var directory = "C:\\sys\\web\\user>"
             var selection = "bruh"
-            var term = $('body').terminal({
+            $('body').terminal({
                 help: function (command) {
                     if (command === undefined){
                         this.echo("type help [command] for more information about the command")
@@ -116,7 +116,7 @@
                 },
                 farquad: function () {
                     const img = $ ('<img src="https://www.lankyduck.com/files/farquad.jpg">');
-                    this.echo(img);
+                    this.echo(img)
                 }
             }, {
                 greetings: '█▀▄ █ █ █▀▀ █▄▀   █▀█ █▀\n█▄▀ █▄█ █▄▄ █ █   █▄█ ▄█\n\nDuckOS © Copyright 2021 L.A.N.K.Y Systems inc.\nType \'help\' to get started\n',
