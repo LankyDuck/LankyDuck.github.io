@@ -58,17 +58,17 @@
                     }
                     if (directory === "C:\\sys\\web\\user\\projects>"){
                         this.echo("Current Projects\n>  Thrust Vector Control Rocket |   1\n>  lankyDuck.com                |   2    \n>  Flight Training              |   3   \n>  Oscilloscope Stuff           |   4"),
-                        this.read("Select Project: ", selection => {
-                            if (selection === "TVC" || selection === "Tvc" || selection === "tvc"){
+                        this.read("Select Project #: ", selection => {
+                            if (selection === "1"){
                                 this.echo("Here's a quick yt video I made while testing the software/hardware communication stuff --> https://youtu.be/hKrfzdpWxyk\nThe software can be found in the archive section of my github --> https://github.com/LankyDuck/LankyDuck.github.io")
                             }
-                            else if (selection === "Website" || selection === "website"){
+                            else if (selection === "2"){
                                 this.echo("Go check out the absolute brainfuck of a code repository on my github --> https://github.com/LankyDuck/LankyDuck.github.io")
                             }
-                            else if (selection === "Flying" || selection === "flying"){
+                            else if (selection === "3"){
                                 this.echo("I post occasionally post about my flying adventures on my instagram --> https://www.instagram.com/lanky.duck/")
                             }
-                            else if (selection === "Osci" || selection === "osci"){
+                            else if (selection === "4"){
                                 this.echo("I didn't really document my oscilloscope tinkerings very well, but you can checkout my tiktok(lanky.duck) which basically sums up what i've been doing\nYou can also check out the custom website I yoinked and tweaked from bummsn here --> https://www.lankyduck.com/Osci-Graphics-Editor/")
                             }
                             else if (selection === "" || selection !== "" ){
