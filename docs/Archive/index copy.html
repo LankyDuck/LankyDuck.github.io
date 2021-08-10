@@ -1,0 +1,136 @@
+<!-- Current as of 8/9/2021 
+    changelog
+    - Changed ascii art to work better with mobile
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<html>
+    <head>
+        <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+        <script src="https://unpkg.com/jquery.terminal@2.x.x/js/jquery.terminal.min.js"></script>
+        <link rel="stylesheet" href="https://unpkg.com/jquery.terminal@2.x.x/css/jquery.terminal.min.css"/>
+        <link rel="shortcut icon" type="image/png" href="https://www.lankyduck.com/favicon.png">
+        <style>
+            .terminal {
+              --size: 1;
+            }
+        </style>
+    </head>
+    <body>
+        <script>
+            var url
+            var directory = "C:\\sys\\web\\user>"
+            var selection = "bruh"
+            $('body').terminal({
+                help: function (command) {
+                    if (command === undefined){
+                        this.echo("type help [command] for more information about the command")
+                        this.echo('    help    | display help\n    ls      | list directory\n    cd      | change directory\n    misc    | Miscellaneous Commands')
+                    }
+                    else if (command === "iam" || command === "Iam"){
+                        this.echo("-iam: Says Hi to the user")
+                    }
+                    else if (command === "founder" || command === "Founder"){
+                        this.echo("-founder: Prints who the founder is")
+                    }
+                    else if (command === "ls" || command === "Ls"){
+                        this.echo("-ls: lists the contents of the current directory(folder)")
+                    }
+                    else if (command === "cd" || command === "Cd"){
+                        this.echo("-cd: change the directory. Takes an input [directory]. Use Tilda [~] to move to exit current folder")
+                    }
+                    else if (command === "legacy" || command === "Legacy"){
+                        this.echo("-legacy: Redirect to legacy website, shit is brokey and I don't care to fix it")
+                    }
+                    else if (command === "help" || command === "Help"){
+                        this.echo("[Error] you just hacked the system")
+                        this.echo("Congrats")
+                    }
+                    else{
+                        this.echo("Somehow you managed to break the help command. Good job. Did you capitalize a command? hmm?")
+                    }
+                },
+                misc: function () {
+                    this.echo("type help [command] for more information about the command")
+                    this.echo('Miscellaneous Commands:\n    iam [your name]\n    founder\n    legacy\n    farquad')
+                },
+                ls: function () {
+                    if (directory === "C:\\sys\\web\\user>"){
+                        this.echo('>  projects\n>  contact');
+                    }
+                    if (directory === "C:\\sys\\web\\user\\projects>"){
+                        this.echo("Current Projects\n>  Thrust Vector Control Rocket |   1\n>  lankyDuck.com                |   2    \n>  Flight Training              |   3   \n>  Oscilloscope Stuff           |   4"),
+                        this.read("Select Project #: ", selection => {
+                            if (selection === "1"){
+                                this.echo("Here's a quick yt video I made while testing the software/hardware communication stuff --> https://youtu.be/hKrfzdpWxyk\nThe software can be found in the archive section of my github --> https://github.com/LankyDuck/LankyDuck.github.io")
+                            }
+                            else if (selection === "2"){
+                                this.echo("Go check out the absolute brainfuck of a code repository on my github --> https://github.com/LankyDuck/LankyDuck.github.io")
+                            }
+                            else if (selection === "3"){
+                                this.echo("I post occasionally post about my flying adventures on my instagram --> https://www.instagram.com/lanky.duck/")
+                            }
+                            else if (selection === "4"){
+                                this.echo("I didn't really document my oscilloscope tinkerings very well, but you can checkout my tiktok(lanky.duck) which sorts shows what i've been doing\nYou can also check out the custom website I yoinked and tweaked from bummsn here --> https://www.lankyduck.com/Osci-Graphics-Editor/")
+                            }
+                            else if (selection === "" || selection !== "" ){
+                                this.echo(">Error: Please Select Project \n>Usage: \"Select Project: -[Selection]\"")
+                            }
+                        });
+                    }
+                    if(directory === "C:\\sys\\web\\user\\contact>"){
+                        this.echo("Zac Holmes\nzac@lankyduck.com\nLankyDuck#5422 on Discord(preferred communication)")
+                    }
+                },
+                cd: function (folder) {
+                    if (folder === "Projects" || folder === "projects"){
+                        this.set_prompt("C:\\sys\\web\\user\\projects>")
+                        directory = "C:\\sys\\web\\user\\projects>"
+                    }
+                    else if (folder === "Contact" || folder === "contact"){
+                        this.set_prompt("C:\\sys\\web\\user\\contact>")
+                        directory = "C:\\sys\\web\\user\\contact>"
+                    }
+                    else if (folder === "~"){
+                        if (directory === "C:\\sys\\web\\user>"){
+                            this.echo("Access Denied")
+                        }
+                        this.set_prompt("C:\\sys\\web\\user>")
+                        directory = "C:\\sys\\web\\user>"
+                    } 
+                    else {
+                        this.echo('>Usage: cd [directory] - ls to list directory - use Tilda to exit current folder')
+                    }
+                },
+                //Reg Commands
+                legacy: function () {
+                    this.echo(">Warning: Legacy website may be broken/unfinished/404/whatever, but just keep that in mind on the legacy site.")
+                    this.echo(">Page will redirect in 5 seconds.")
+                    //setTimeout("pageRedirectLegacy()", 5000);
+                    
+                },
+                //Fun Commands
+                iam: function (name) {
+                    this.echo('Hello, ' + name +
+                        '. Welcome to L.A.N.K.Y. OS');
+                },
+                founder: function () {
+                    this.echo('Zac Holmes - "LankyDuck"');
+                },
+                farquad: function () {
+                    const img = $ ('<img src="https://www.lankyduck.com/files/farquad.jpg">');
+                    this.echo(img)
+                }
+            }, {
+                greetings: '█▀▄ █ █ █▀▀ █▄▀   █▀█ █▀\n█▄▀ █▄█ █▄▄ █ █   █▄█ ▄█\n\nDuckOS © Copyright 2021 L.A.N.K.Y Systems inc.\nType \'help\' to get started\n',
+                prompt: "C:\\sys\\web\\user>",
+                checkArity: false
+            });
+            function pageRedirectLegacy() {
+                window.location.replace("https://www.lankyduck.com/legacy/");
+            }
+        </script>
+    </body>
+</html>
